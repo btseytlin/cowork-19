@@ -1,5 +1,6 @@
 jinja2
 flask
+flask-admin
 flask-cors
 psycopg2
 sqlalchemy

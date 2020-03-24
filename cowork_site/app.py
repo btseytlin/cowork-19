@@ -1,6 +1,8 @@
 from flask import Flask, abort
 from flask.logging import default_handler
 from flask_cors import CORS
+from flask_admin import Admin
+from flask_admin.contrib.sqla import ModelView
 from werkzeug.exceptions import HTTPException
 
 from cowork_site import config
@@ -26,7 +28,19 @@ def create_app(config=config.Configuration, session_factory=None):
     configure_app(app, config)
     configure_database(app, config.SQLALCHEMY_URL, config.DB_ECHO, session_factory)
 
+    # Blueprints
+
     app.register_blueprint(candidates_blueprint)
+
+    # Flask admin
+
+    app.config['FLASK_ADMIN_SWATCH'] = 'cerulean'
+
+    admin = Admin(app, name='admin', template_mode='bootstrap3')
+
+    from cowork_site.models import Candidate
+
+    admin.add_view(ModelView(Candidate, app.session_factory))
 
     @app.errorhandler(Exception)
     def handle_unknown_error(error):
