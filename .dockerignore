@@ -1,0 +1,10 @@
+.env
+.gitignore
+.git/
+pgdata/
+docker-compose.yml
+.venv/
+*.pyc
+*.mp4
+*/__pycache__/
+webdav/
