@@ -1,0 +1,30 @@
+version: "3.7"
+services:
+  db:
+    image: postgres:alpine
+    env_file:
+      - local.env
+    ports:
+      - 5432:5432
+    volumes:
+      - "pgdata:/var/lib/postgresql/data:rw"
+    networks:
+      - cowork-network
+  cowork_site:
+    build: .
+    command: sh -c 'alembic upgrade head && uwsgi --yaml /app/uwsgi.yml'
+    ports:
+      - 8000:8000
+    volumes:
+      - "./migrations/versions/:/app/migrations/versions/:rw"
+      - "./:/app/:ro"
+    env_file:
+      - local.env
+    networks:
+      - cowork-network
+
+networks:
+  cowork-network:
+
+volumes:
+  pgdata:
