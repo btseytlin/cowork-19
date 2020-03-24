@@ -1,5 +1,5 @@
-from .app import create_app
-from . import config
+from cowork_site.app import create_app
+from cowork_site import config
 
 if __name__ == "__main__":
     app = create_app(config=config.Configuration)

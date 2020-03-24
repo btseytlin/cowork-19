@@ -18,5 +18,6 @@ ENV PYTHONPATH=/app/
 
 RUN chmod +x /app/wait-for-it.sh
 RUN pip install --no-cache -r /app/requirements.txt
+RUN pip install --no-cache -e .
 EXPOSE 8000
 CMD [ "uwsgi", "--yaml /app/uwsgi.yml" ]

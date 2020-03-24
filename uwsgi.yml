@@ -1,0 +1,14 @@
+uwsgi:
+  uid: 1000
+  gid: 1000
+  protocol: http
+  wsgi-file: /app/cowork_site/wsgi.py
+  callable: app
+  need-app: true
+  py-autoreload: 1
+  socket: :8000
+  enable-threads: 1
+  workers: 40
+  cheaper: 5
+  plugins:
+    - python3

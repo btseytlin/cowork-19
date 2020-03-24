@@ -7,17 +7,19 @@ services:
     ports:
       - 5432:5432
     volumes:
-      - "pgdata:/var/lib/postgresql/data:rw"
+      - "./pgdata:/var/lib/postgresql/data:rw"
     networks:
       - cowork-network
   cowork_site:
     build: .
     command: sh -c 'alembic upgrade head && uwsgi --yaml /app/uwsgi.yml'
+    depends_on:
+      - db
     ports:
       - 8000:8000
     volumes:
       - "./migrations/versions/:/app/migrations/versions/:rw"
-      - "./:/app/:ro"
+      - "./:/app/:rw"
     env_file:
       - local.env
     networks:
@@ -25,6 +27,3 @@ services:
 
 networks:
   cowork-network:
-
-volumes:
-  pgdata:

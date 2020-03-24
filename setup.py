@@ -14,10 +14,10 @@ REQUIREMENTS_PATH = path.join(path.dirname(__file__), 'requirements.txt')
 install_reqs = parse_requirements(REQUIREMENTS_PATH, session='')
 reqs = [str(ir.req) for ir in install_reqs if ir]
 setup(
-    name='cody',
+    name='cowork_site',
     version='0.0.1',
     install_requires=reqs,
-    packages=['cody'],
+    packages=['cowork_site'],
     long_description=f'\n{os.environ.get("VERSION")}',
     include_package_data=True,
 )
