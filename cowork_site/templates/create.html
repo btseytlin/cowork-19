@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h1>Cowork-19 make post nigga</h1>
+    <form method="POST" action="{{ url_for('candidates.candidate_create') }}">
+        {{ form.csrf_token }}
+        <div>{{ form.name.label }}: {{ form.name() }}</div>
+        {% if form.name.errors %}
+            <ul class="errors">{% for error in form.name.errors %}<li>{{ error }}</li>{% endfor %}</ul>
+        {% endif %}
+
+        <div>{{ form.description.label }}: {{ form.description() }}</div>
+        {% if form.description.errors %}
+            <ul class="errors">{% for error in form.description.errors %}<li>{{ error }}</li>{% endfor %}</ul>
+        {% endif %}
+
+        <div>{{ form.cv_url.label }}: {{ form.cv_url() }}</div>
+        {% if form.cv_url.errors %}
+            <ul class="errors">{% for error in form.cv_url.errors %}<li>{{ error }}</li>{% endfor %}</ul>
+        {% endif %}
+
+        <div>{{ form.email.label }}: {{ form.email() }}</div>
+        {% if form.email.errors %}
+            <ul class="errors">{% for error in form.email.errors %}<li>{{ error }}</li>{% endfor %}</ul>
+        {% endif %}
+
+        <input type="submit">
+    </form>
+{% endblock %}
+

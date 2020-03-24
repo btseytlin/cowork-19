@@ -7,7 +7,7 @@ sqlalchemy
 alembic
 covador
 furl
-pytest==4.6.4
+pytest
 pytest-mock
 factory-boy
 pytest-factoryboy
@@ -16,3 +16,5 @@ confi
 requests
 pyuri
 werkzeug
+WTForms
+Flask-WTF
