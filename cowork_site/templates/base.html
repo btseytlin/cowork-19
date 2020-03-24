@@ -1,0 +1,14 @@
+<!doctype html>
+<head>
+<title>Cowork-19</title>
+</head>
+<body>
+<header>
+{% for message in get_flashed_messages() %}
+    <div class="flash">{{ message }}</div>
+{% endfor %}
+</header>
+<div class="content">
+  {% block content %}{% endblock %}
+</div>
+</body>
