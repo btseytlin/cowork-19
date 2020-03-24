@@ -1,5 +1,19 @@
 {% extends 'base.html' %}
 
 {% block content %}
-  {{ objects }}
+    <h1>Cowork-19 nigga</h1>
+    <div class="caniddate-list">
+      {% for object in objects %}
+        <article class="candidate-card">
+          <header class="candidate-head">
+              <h3>{{ object['name'] }}</h3>
+              <div class="created-at">{{ object['created_at'].strftime('%Y-%m-%d') }}</div>
+          </header>
+          <p class="email">{{ object['email'] }}</p>
+        </article>
+        {% if not loop.last %}
+          <hr>
+        {% endif %}
+      {% endfor %}
+    </div>
 {% endblock %}
