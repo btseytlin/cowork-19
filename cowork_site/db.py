@@ -8,6 +8,7 @@ from cowork_site.models import Base
 
 # Postgres unique code error
 UNIQUE_CODE_ERROR = "23505"
+GLOBAL_SESSION_FACTORY = None
 
 
 def get_db_engine(db_uri, echo=False):
@@ -47,9 +48,11 @@ def configure_database(app,
                        sqla_url,
                        db_echo,
                        session_factory):
+    global GLOBAL_SESSION_FACTORY
     app.engine = get_db_engine(sqla_url,
                            echo=db_echo)
     app.session_factory = session_factory or get_db_session_factory(app.engine)
+    GLOBAL_SESSION_FACTORY = app.session_factory
     Base.metadata.bind = app.session_factory
 
     @app.teardown_appcontext

@@ -1,13 +1,16 @@
-from flask import Flask, abort
+from flask import Flask, abort, flash, redirect, url_for
 from flask.logging import default_handler
 from flask_cors import CORS
 from flask_admin import Admin
 from flask_admin.contrib.sqla import ModelView
+from flask_login import login_required, logout_user
 from werkzeug.exceptions import HTTPException
 
 from cowork_site import config
 from cowork_site.utils import configure_logger
 from cowork_site.db import configure_database
+from cowork_site.models.auth import login_manager
+from cowork_site.auth.google import google_auth_blueprint
 
 from cowork_site.candidates.blueprint import candidates_blueprint
 
@@ -26,11 +29,26 @@ def create_app(config=config.Configuration, session_factory=None):
     CORS(app)
     configure_logging(app, config.LOG_LEVEL)
     configure_app(app, config)
+
     configure_database(app, config.SQLALCHEMY_URL, config.DB_ECHO, session_factory)
 
-    # Blueprints
+    # App blueprints
 
     app.register_blueprint(candidates_blueprint)
+
+    # OAuth
+
+    app.register_blueprint(google_auth_blueprint, url_prefix="/login")
+
+    login_manager.init_app(app)
+
+    @app.route("/logout")
+    @login_required
+    def logout():
+        logout_user()
+        flash("You have logged out")
+        return redirect(url_for("candidates.candidate_list"))
+
 
     # Flask admin
 

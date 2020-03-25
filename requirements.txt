@@ -4,6 +4,7 @@ flask-admin
 flask-cors
 psycopg2
 sqlalchemy
+sqlalchemy_utils
 alembic
 covador
 furl
@@ -18,3 +19,6 @@ pyuri
 werkzeug
 WTForms
 Flask-WTF
+flask-dance[sqla]
+flask-login
+blinker
