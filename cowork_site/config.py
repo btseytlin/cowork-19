@@ -9,3 +9,9 @@ class Configuration(BaseEnvironConfig):
     SQLALCHEMY_URL = ConfigField(required=True)
 
     LOG_LEVEL = IntConfig(default=10)
+
+    # Google auth
+    GOOGLE_CLIENT_ID = ConfigField(required=True)
+    GOOGLE_CLIENT_SECRET = ConfigField(required=True)
+    OAUTHLIB_RELAX_TOKEN_SCOPE = BooleanConfig(default=True)
+    OAUTHLIB_INSECURE_TRANSPORT = BooleanConfig(default=False)

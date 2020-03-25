@@ -9,6 +9,15 @@
     <div class="flash">{{ message }}</div>
 {% endfor %}
 </header>
+<div class="auth">
+    {% if current_user.is_authenticated %}
+      You are logged in as {{ current_user.email }}!
+      <a href="{{ url_for("logout") }}">Log out</a>
+    {% else %}
+      You are not logged in.
+      <a href="{{ url_for("google.login") }}">Log in</a>
+    {% endif %}
+</div>
 <div class="content">
   {% block content %}{% endblock %}
 </div>
