@@ -15,3 +15,11 @@ class Configuration(BaseEnvironConfig):
     GOOGLE_CLIENT_SECRET = ConfigField(required=True)
     OAUTHLIB_RELAX_TOKEN_SCOPE = BooleanConfig(default=True)
     OAUTHLIB_INSECURE_TRANSPORT = BooleanConfig(default=False)
+
+    # # Msearch
+    #
+    # MSEARCH_INDEX_NAME = ConfigField(default='msearch')
+    # MSEARCH_BACKEND = ConfigField(default='whoosh')
+    # MSEARCH_PRIMARY_KEY = ConfigField(default='id')
+    # MSEARCH_ENABLE = BooleanConfig(default=True)
+    # SQLALCHEMY_TRACK_MODIFICATIONS = BooleanConfig(default=True)

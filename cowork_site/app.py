@@ -1,10 +1,13 @@
 from flask import Flask, abort, flash, redirect, url_for
 from flask.logging import default_handler
+from werkzeug.exceptions import HTTPException
+
+
 from flask_cors import CORS
 from flask_admin import Admin
 from flask_admin.contrib.sqla import ModelView
 from flask_login import login_required, logout_user
-from werkzeug.exceptions import HTTPException
+
 
 from cowork_site import config
 from cowork_site.utils import configure_logger
@@ -32,9 +35,6 @@ def create_app(config=config.Configuration, session_factory=None):
 
     configure_database(app, config.SQLALCHEMY_URL, config.DB_ECHO, session_factory)
 
-    # App blueprints
-
-    app.register_blueprint(candidates_blueprint)
 
     # OAuth
 
@@ -59,6 +59,10 @@ def create_app(config=config.Configuration, session_factory=None):
     from cowork_site.models import Candidate
 
     admin.add_view(ModelView(Candidate, app.session_factory))
+
+    # App blueprints
+
+    app.register_blueprint(candidates_blueprint)
 
     @app.errorhandler(Exception)
     def handle_unknown_error(error):

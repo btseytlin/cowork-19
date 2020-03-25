@@ -1,5 +1,8 @@
+from sqlalchemy_searchable import search
 from flask.views import View
 from flask import current_app, request, render_template, redirect, flash, url_for
+from covador import split, opt
+from covador.flask import query_string
 
 from cowork_site.models import Candidate
 from .forms import CandidateCreateForm
@@ -15,16 +18,19 @@ class BaseView(View):
 
 
 class CandidateListView(BaseView):
-
     template_name = 'list.html'
+    decorators = [query_string(search=opt(str, ''))]
 
-    def get_objects(self):
+    def get_objects(self, search_string=None):
         s = current_app.session_factory()
-        objects = s.query(Candidate).all()
+        query = s.query(Candidate)
+        if search_string:
+            query = search(query, search_string, sort=True)
+        objects = query.all()
         return objects
 
-    def dispatch_request(self):
-        return self.render_template(objects=self.get_objects())
+    def dispatch_request(self, search, *args, **kwargs):
+        return self.render_template(objects=self.get_objects(search, *args, **kwargs))
 
 
 class CandidateCreateView(BaseView):

@@ -1,3 +1,4 @@
+import sqlalchemy
 import logging
 from contextlib import contextmanager
 
@@ -51,6 +52,7 @@ def configure_database(app,
     global GLOBAL_SESSION_FACTORY
     app.engine = get_db_engine(sqla_url,
                            echo=db_echo)
+    sqlalchemy.orm.configure_mappers()  # IMPORTANT!
     app.session_factory = session_factory or get_db_session_factory(app.engine)
     GLOBAL_SESSION_FACTORY = app.session_factory
     Base.metadata.bind = app.session_factory
