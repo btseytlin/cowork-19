@@ -2,6 +2,12 @@
 
 {% block content %}
     <h1>Cowork-19 nigga</h1>
+    <div class="search">
+        <form method="GET" action="{{ url_for('candidates.candidate_list') }}">
+            <input class="search-bar" type="text" name="search" id="search" placeholder="search query"/>
+            <input type="submit" value="Search!">
+        </form>
+    </div>
     <div class="caniddate-list">
       {% for object in objects %}
         <article class="candidate-card">
