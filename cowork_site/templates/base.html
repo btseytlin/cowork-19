@@ -1,23 +1,40 @@
 <!doctype html>
 <head>
-<title>Cowork-19</title>
+    <title>Cowork-19</title>
+    <link rel="stylesheet" href="https://unpkg.com/purecss@1.0.1/build/pure-min.css" integrity="sha384-oAOxQR6DkCoMliIh8yFnu25d7Eq/PHS21PClpwjOTeU2jRSq11vu66rf90/cZr47" crossorigin="anonymous">
+
+    <!--[if lte IE 8]>
+        <link rel="stylesheet" href="https://unpkg.com/purecss@1.0.1/build/grids-responsive-old-ie-min.css">
+    <![endif]-->
+    <!--[if gt IE 8]><!-->
+        <link rel="stylesheet" href="https://unpkg.com/purecss@1.0.1/build/grids-responsive-min.css">
+    <!--<![endif]-->
+
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
 <header>
-{% for message in get_flashed_messages() %}
-    <div class="flash">{{ message }}</div>
-{% endfor %}
+    <div class="container pure-g">
+        <div class="pure-u-1 pure-u-md-1-5">Cowork-19</div>
+        <div class="pure-u-1-5 pure-u-md-3-5"></div>
+        <div class="pure-u-1 pure-u-md-1-5">
+            <div class="auth">
+            {% if current_user.is_authenticated %}
+              {{ current_user.email }}
+              <a href="{{ url_for("logout") }}">Log out</a>
+            {% else %}
+              <a href="{{ url_for("google.login") }}">Log in</a>
+            {% endif %}
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        {% for message in get_flashed_messages() %}
+            <div class="flash">{{ message }}</div>
+        {% endfor %}
+    </div>
 </header>
-<div class="auth">
-    {% if current_user.is_authenticated %}
-      You are logged in as {{ current_user.email }}!
-      <a href="{{ url_for("logout") }}">Log out</a>
-    {% else %}
-      You are not logged in.
-      <a href="{{ url_for("google.login") }}">Log in</a>
-    {% endif %}
-</div>
+
 <div class="content">
   {% block content %}{% endblock %}
 </div>
