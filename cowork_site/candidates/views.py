@@ -19,7 +19,7 @@ class BaseView(View):
 
 class CandidateListView(BaseView):
     template_name = 'list.html'
-    decorators = [query_string(search=opt(str, ''))]
+    decorators = [query_string(search_string=opt(str, ''))]
 
     def get_objects(self, search_string=None):
         s = current_app.session_factory()
@@ -29,8 +29,8 @@ class CandidateListView(BaseView):
         objects = query.all()
         return objects
 
-    def dispatch_request(self, search, *args, **kwargs):
-        return self.render_template(objects=self.get_objects(search, *args, **kwargs))
+    def dispatch_request(self, search_string, *args, **kwargs):
+        return self.render_template(objects=self.get_objects(search_string, *args, **kwargs), search_string=search_string)
 
 
 class CandidateCreateView(BaseView):

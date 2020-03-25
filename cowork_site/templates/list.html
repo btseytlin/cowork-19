@@ -1,25 +1,47 @@
 {% extends 'base.html' %}
 
 {% block content %}
-    <h1>Cowork-19 nigga</h1>
-    <div class="search">
-        <form method="GET" action="{{ url_for('candidates.candidate_list') }}">
-            <input class="search-bar" type="text" name="search" id="search" placeholder="search query"/>
-            <input type="submit" value="Search!">
-        </form>
-    </div>
-    <div class="caniddate-list">
-      {% for object in objects %}
-        <article class="candidate-card">
-          <header class="candidate-head">
-              <h3>{{ object['name'] }}</h3>
-              <div class="created-at">{{ object['created_at'].strftime('%Y-%m-%d') }}</div>
-          </header>
-          <p class="email">{{ object['email'] }}</p>
-        </article>
-        {% if not loop.last %}
-          <hr>
-        {% endif %}
-      {% endfor %}
+    <div class="container">
+            <div class="search">
+                <form class="pure-form" method="GET" action="{{ url_for('candidates.candidate_list') }}">
+                    <fieldset>
+                        <input class="search-bar" type="text" name="search_string" id="search_string" placeholder="search query" value ="{{ search_string }}"/>
+                        <button class="pure-button pure-button-primary" type="submit">Search</button>
+                    </fieldset>
+                </form>
+            </div>
+
+            <div class="caniddate-list">
+              {% for object in objects %}
+
+                <article class="candidate-card">
+                    <header class="pure-g">
+                        <div class="pure-u-1-2 pure-u-md-3-5">
+                            <h3 class="candidate-name">{{ object['name'] }}</h3>
+                        </div>
+                        <div class="pure-u-1-2 pure-u-md-2-5">
+                            <h5 class="created-at">{{ object['created_at'].strftime('%Y-%m-%d') }}</h5>
+                        </div>
+                    </header>
+                    <div class="pure-g">
+                        <div class="pure-u-1 pure-u-md-3-5">
+                            <div class="description">{{ object['description'] }}</div>
+                        </div>
+                        <div class="pure-u-1-2 pure-u-md-1-5">
+                            <a href="mailto:{{ object['email'] }}" class="email-link">{{ object['email'] }}</a>
+                        </div>
+                        <div class="pure-u-1-2 pure-u-md-1-5">
+                            <a href="{{ object['cv_url'] }}" class="cv-link">CV/Портфолио</a>
+                        </div>
+                    </div>
+                </article>
+
+                {% if not loop.last %}
+                  <hr>
+                {% endif %}
+
+              {% endfor %}
+            <div class="divider"><span></span><span>Вот и всё</span><span></span></div>
+            </div>
     </div>
 {% endblock %}
