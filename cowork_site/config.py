@@ -15,3 +15,6 @@ class Configuration(BaseEnvironConfig):
     GOOGLE_CLIENT_SECRET = ConfigField(required=True)
     OAUTHLIB_RELAX_TOKEN_SCOPE = BooleanConfig(default=True)
     OAUTHLIB_INSECURE_TRANSPORT = BooleanConfig(default=False)
+
+    # Custom
+    POSTINGS_PER_PAGE = IntConfig(default=1)

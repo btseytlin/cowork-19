@@ -27,6 +27,12 @@ html {
     border-bottom: 1px solid gray;
 }
 
+.pagination {
+    margin: auto;
+    width:50%;
+    text-align: center;
+}
+
 /* Mobile overries */
 
 @media only screen and (max-width: 768px) {

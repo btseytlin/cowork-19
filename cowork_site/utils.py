@@ -1,4 +1,5 @@
 import logging
+from flask import request, url_for
 
 
 def configure_logger(logger, log_level):
@@ -10,3 +11,9 @@ def configure_logger(logger, log_level):
     logger.setLevel(log_level)
     logger.addHandler(handler)
     return logger
+
+
+def back_redirect_url(default='postings.posting_list'):
+    return request.args.get('next') or \
+           request.referrer or \
+           url_for(default)
