@@ -3,7 +3,7 @@
 {% block content %}
     <div class="container">
             <div class="search">
-                <form class="pure-form" method="GET" action="{{ url_for('candidates.candidate_list') }}">
+                <form class="pure-form" method="GET" action="{{ url_for('postings.posting_list') }}">
                     <fieldset>
                         <input class="search-bar" type="text" name="search_string" id="search_string" placeholder="search query" value ="{{ search_string }}"/>
                         <button class="pure-button pure-button-primary" type="submit">Search</button>
@@ -13,25 +13,24 @@
 
             <div class="caniddate-list">
               {% for object in objects %}
-
-                <article class="candidate-card">
+                <article class="posting-card">
                     <header class="pure-g">
                         <div class="pure-u-1-2 pure-u-md-3-5">
-                            <h3 class="candidate-name">{{ object['name'] }}</h3>
+                            <h3 class="posting-name">{{ object.name }}</h3>
                         </div>
                         <div class="pure-u-1-2 pure-u-md-2-5">
-                            <h5 class="created-at">{{ object['created_at'].strftime('%Y-%m-%d') }}</h5>
+                            <h5 class="created-at">{{ object.created_at.strftime('%Y-%m-%d') }}</h5>
                         </div>
                     </header>
                     <div class="pure-g">
                         <div class="pure-u-1 pure-u-md-3-5">
-                            <div class="description">{{ object['description'] }}</div>
+                            <div class="description">{{ object.description }}</div>
                         </div>
                         <div class="pure-u-1-2 pure-u-md-1-5">
-                            <a href="mailto:{{ object['email'] }}" class="email-link">{{ object['email'] }}</a>
+                            <a href="mailto:{{ object.user.email }}" class="email-link">{{ object.user.email }}</a>
                         </div>
                         <div class="pure-u-1-2 pure-u-md-1-5">
-                            <a href="{{ object['cv_url'] }}" class="cv-link">CV/Портфолио</a>
+                            <a href="{{ object.cv_url }}" class="cv-link">CV/Портфолио</a>
                         </div>
                     </div>
                 </article>

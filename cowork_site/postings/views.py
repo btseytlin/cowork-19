@@ -1,11 +1,12 @@
+from flask_login import current_user, login_required
 from sqlalchemy_searchable import search
 from flask.views import View
 from flask import current_app, request, render_template, redirect, flash, url_for
 from covador import split, opt
 from covador.flask import query_string
 
-from cowork_site.models import Candidate
-from .forms import CandidateCreateForm
+from cowork_site.models import Posting
+from .forms import PostingCreateForm
 
 
 class BaseView(View):
@@ -17,13 +18,13 @@ class BaseView(View):
         return render_template(self.template_name, **kwargs)
 
 
-class CandidateListView(BaseView):
+class PostingListView(BaseView):
     template_name = 'list.html'
     decorators = [query_string(search_string=opt(str, ''))]
 
     def get_objects(self, search_string=None):
         s = current_app.session_factory()
-        query = s.query(Candidate)
+        query = s.query(Posting)
         if search_string:
             query = search(query, search_string, sort=True)
         objects = query.all()
@@ -33,25 +34,27 @@ class CandidateListView(BaseView):
         return self.render_template(objects=self.get_objects(search_string, *args, **kwargs), search_string=search_string)
 
 
-class CandidateCreateView(BaseView):
+class PostingCreateView(BaseView):
 
     template_name = 'create.html'
+    decorators = [login_required]
 
     def dispatch_request(self):
         s = current_app.session_factory()
 
-        form = CandidateCreateForm()
+        form = PostingCreateForm()
         if form.validate_on_submit():
-            candidate = Candidate(
+            posting = Posting(
                 name=form.name.data,
-                email=form.email.data,
                 description=form.description.data,
                 cv_url=form.cv_url.data,
+
             )
-            s.add(candidate)
+            posting.user = current_user
+            s.add(posting)
             s.commit()
             flash('Добавлено')
-            return redirect(url_for('candidates.candidate_list'))
+            return redirect(url_for('postings.posting_list'))
 
         return self.render_template(form=form)
 

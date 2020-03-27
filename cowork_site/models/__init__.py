@@ -1,3 +1,3 @@
 from .base import Base
-from .candidate import Candidate
+from .posting import Posting
 from .auth import User, OAuth

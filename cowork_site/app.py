@@ -15,7 +15,7 @@ from cowork_site.db import configure_database
 from cowork_site.models.auth import login_manager
 from cowork_site.auth.google import google_auth_blueprint
 
-from cowork_site.candidates.blueprint import candidates_blueprint
+from cowork_site.postings.blueprint import postings_blueprint
 
 
 def configure_app(app, config):
@@ -47,7 +47,7 @@ def create_app(config=config.Configuration, session_factory=None):
     def logout():
         logout_user()
         flash("You have logged out")
-        return redirect(url_for("candidates.candidate_list"))
+        return redirect(url_for("postings.posting_list"))
 
 
     # Flask admin
@@ -56,13 +56,13 @@ def create_app(config=config.Configuration, session_factory=None):
 
     admin = Admin(app, name='admin', template_mode='bootstrap3')
 
-    from cowork_site.models import Candidate
+    from cowork_site.models import Posting
 
-    admin.add_view(ModelView(Candidate, app.session_factory))
+    admin.add_view(ModelView(Posting, app.session_factory))
 
     # App blueprints
 
-    app.register_blueprint(candidates_blueprint)
+    app.register_blueprint(postings_blueprint)
 
     @app.errorhandler(Exception)
     def handle_unknown_error(error):
