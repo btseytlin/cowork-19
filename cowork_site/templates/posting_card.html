@@ -1,25 +1,38 @@
 <article class="posting-card" id="posting-{{ object.id}} }}">
+
+    <header>
+        <div class="card-title">
+            <h3 class="posting-name">{{ object.name }}</h3>
+            <h5 class="created-at">{{ object.created_at.strftime('%Y-%m-%d') }}</h5>
+        </div>
+        <div class="cv-urls">
+            <a href="{{ object.cv_url }}" class="cv-link">CV/Портфолио</a>
+        </div>
+    </header>
+    <div class="card-body">
+        <div>
+            <div class="wrap-collabsible">
+              <input id="collapsible-{{ object.id }}" class="collapse-toggle" type="checkbox">
+                <label for="collapsible-{{ object.id }}" class="collapse-lbl-toggle">
+                    <span class="catch-phrase">{{ object.description }}</span></label>
+
+              <div class="collapsible-content">
+                <div class="content-inner">
+                  <p class="description">
+                    {{ object.description }}
+                  </p>
+                </div>
+              </div>
+            </div>
+        </div>
+        <div>
+            <a href="mailto:{{ object.user.email }}" class="email-link">{{ object.user.email }}</a>
+        </div>
+    </div>
+
     {% if current_user == object.user %}
         <a class="pure-button" href="{{ url_for('postings.posting_archive', posting_id=object.id) }}">Archive</a>
     {% endif %}
 
-    <header class="pure-g">
-        <div class="pure-u-1-2 pure-u-md-3-5">
-            <h3 class="posting-name">{{ object.name }}</h3>
-        </div>
-        <div class="pure-u-1-2 pure-u-md-2-5">
-            <h5 class="created-at">{{ object.created_at.strftime('%Y-%m-%d') }}</h5>
-        </div>
-    </header>
-    <div class="pure-g">
-        <div class="pure-u-1 pure-u-md-3-5">
-            <div class="description">{{ object.description }}</div>
-        </div>
-        <div class="pure-u-1-2 pure-u-md-1-5">
-            <a href="mailto:{{ object.user.email }}" class="email-link">{{ object.user.email }}</a>
-        </div>
-        <div class="pure-u-1-2 pure-u-md-1-5">
-            <a href="{{ object.cv_url }}" class="cv-link">CV/Портфолио</a>
-        </div>
-    </div>
 </article>
+

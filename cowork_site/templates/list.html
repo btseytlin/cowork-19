@@ -2,22 +2,18 @@
 
 {% block content %}
     <div class="container">
-            <div class="search">
-                <form class="pure-form" method="GET" action="{{ url_for('postings.posting_list') }}">
-                    <fieldset>
-                        <input class="search-bar" type="text" name="search_string" id="search_string" placeholder="search query" value ="{{ search_string }}"/>
-                        <button class="pure-button pure-button-primary" type="submit">Search</button>
-                    </fieldset>
-                </form>
-            </div>
+        <div class="search">
+            <form class="search-form" method="GET" action="{{ url_for('postings.posting_list') }}">
+                <input class="search-bar" type="text" name="search_string"
+                           id="search_string" placeholder="Чего искать?"
+                           value ="{{ search_string }}"/>
+                <button class="search-button" type="submit">Ищи</button>
+            </form>
+        </div>
 
             <div class="caniddate-list">
               {% for object in objects %}
                   {% include 'posting_card.html' %}
-                {% if not loop.last %}
-                  <hr>
-                {% endif %}
-
               {% endfor %}
             </div>
 
