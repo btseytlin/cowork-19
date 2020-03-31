@@ -1,4 +1,4 @@
-<article class="posting-card">
+<article class="posting-card" id="posting-{{ object.id}} }}">
     {% if current_user == object.user %}
         <a class="pure-button" href="{{ url_for('postings.posting_archive', posting_id=object.id) }}">Archive</a>
     {% endif %}
