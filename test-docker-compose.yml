@@ -1,0 +1,24 @@
+version: "3.7"
+services:
+  test_db:
+    image: postgres:alpine
+    env_file:
+      - test.env
+    networks:
+      - test-cowork-network
+  cowork_site:
+    build: .
+    command: sh -c './wait-for-it.sh test_db:5432 && alembic upgrade head && pytest -x'
+    volumes:
+      - "./:/app/:ro"
+    links:
+      - test_db
+    depends_on:
+      - test_db
+    env_file:
+      - test.env
+    networks:
+      - test-cowork-network
+
+networks:
+  test-cowork-network:

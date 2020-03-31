@@ -20,8 +20,8 @@ services:
     ports:
       - 8000:8000
     volumes:
+      - "./:/app/:ro"
       - "./migrations/versions/:/app/migrations/versions/:rw"
-      - "./:/app/:rw"
     env_file:
       - local.env
     networks:
