@@ -1,25 +1,45 @@
 {% extends 'base.html' %}
 
 {% block content %}
-    <h1>Cowork-19 make post nigga</h1>
-    <form method="POST" action="{{ url_for('postings.posting_create') }}">
-        {{ form.csrf_token }}
-        <div>{{ form.name.label }}: {{ form.name() }}</div>
-        {% if form.name.errors %}
-            <ul class="errors">{% for error in form.name.errors %}<li>{{ error }}</li>{% endfor %}</ul>
-        {% endif %}
+    <div class="container">
+        <h1>Разместить резюме</h1>
+        <form method="POST" action="{{ url_for('postings.posting_create') }}">
+            {{ form.csrf_token }}
 
-        <div>{{ form.description.label }}: {{ form.description() }}</div>
-        {% if form.description.errors %}
-            <ul class="errors">{% for error in form.description.errors %}<li>{{ error }}</li>{% endfor %}</ul>
-        {% endif %}
+            <div class="form-element">
+                <div class="hidden">{{ form.name.label }}</div>
+                <div class="form-name">{{ form.name(placeholder="Название позиции", class="form-error" if form.name.errors else "") }}</div>
+                <div class="input-helper">Например:<br/>Разработчик&#160;Python, Бизнес&#160;аналитик,  Инженер&#8209;подрывник</div>
+            </div>
 
-        <div>{{ form.cv_url.label }}: {{ form.cv_url() }}</div>
-        {% if form.cv_url.errors %}
-            <ul class="errors">{% for error in form.cv_url.errors %}<li>{{ error }}</li>{% endfor %}</ul>
-        {% endif %}
+            <div class="form-element">
+                <div class="hidden">{{ form.oneliner.label }}</div>
+                <div class="form-oneliner">{{ form.oneliner(placeholder="40 символов о себе", class="form-error" if form.oneliner.errors else "") }}</div>
+                <div class="input-helper">Например:<br/>5 лет во фронтенде и&#160;ещё&#160;потерплю</div>
+            </div>
 
-        <input type="submit">
-    </form>
+            <div class="form-element">
+                <div class="hidden">{{ form.description.label }}</div>
+                <div class="form-description">{{ form.description(placeholder="Ещё до 300 символов", maxlength=300, class="form-error" if form.description.errors else "") }}</div>
+                <div class="input-helper">Здесь кратко про опыт, навыки и ожидания </div>
+            </div>
+
+            <div class="form-element">
+                <div class="hidden">{{ form.cv_url.label }}</div>
+                <div class="form-cv_url">{{ form.cv_url(type=url, placeholder="Ссылка на CV/Портфолио", class="form-error" if form.cv_url.errors else "") }}</div>
+                <div class="input-helper">Пожалуйста,&#160;убедись, что&#160;она&#160;работает</div>
+            </div>
+
+
+            <div class="form-element">
+                <div class="form-email">{{ current_user.email }}</div>
+                <div class="input-helper">Эта почта будет указана в&#160;объявлении</div>
+            </div>
+            <div class="form-element">
+                <input type="submit" value="Разместить">
+            </div>
+
+        </form>
+    </div>
 {% endblock %}
 

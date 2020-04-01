@@ -14,7 +14,7 @@
             <div class="wrap-collabsible">
               <input id="collapsible-{{ object.id }}" class="collapse-toggle" type="checkbox">
                 <label for="collapsible-{{ object.id }}" class="collapse-lbl-toggle">
-                    <span class="catch-phrase">{{ object.description }}</span></label>
+                    <span class="catch-phrase">{{ object.oneliner }}</span></label>
 
               <div class="collapsible-content">
                 <div class="content-inner">
@@ -29,10 +29,12 @@
             <a href="mailto:{{ object.user.email }}" class="email-link">{{ object.user.email }}</a>
         </div>
     </div>
-
     {% if current_user == object.user %}
-        <a class="pure-button" href="{{ url_for('postings.posting_archive', posting_id=object.id) }}">Archive</a>
+    <div class="card-footer">
+       <a onclick="confirm_delete('{{ object.id }}')"> <button class="card-delete">Удалить</button></a>
+    </div>
     {% endif %}
+
 
 </article>
 
