@@ -10,6 +10,10 @@ html {
 
 }
 
+h1 {
+    color: #3E2FED;
+}
+
 a {
     color: #3E2FED;
     text-decoration: none;
@@ -17,6 +21,10 @@ a {
 
 a:hover{
     text-decoration: underline;
+}
+
+.hidden {
+    display: none;
 }
 
 
@@ -41,16 +49,9 @@ a:hover{
     /* min-height: 84px; */
     width:100%;
 
-}
+    margin-bottom: 43px;
 
-.pure-menu-heading, .pure-menu-link {
-    padding-bottom: 0;
 }
-
-.pure-menu-active>.pure-menu-link, .pure-menu-link:focus, .pure-menu-link:hover {
-    background: transparent;
-}
-
 
 
 .container {
@@ -70,25 +71,34 @@ a:hover{
     vertical-align: middle;
 }
 
-fieldset {
-    margin: 0;
-    padding: 0;
-    border: none;
+.auth {
+    text-align: right;
 }
-input, button, input::placeholder {
-    background-color: #3E2FED;
-    color:white;
-    border: none;
+
+
+
+input, button, textarea {
     border-radius: 0;
-    padding:5px;
-    margin: auto 10px;
-    height:100%;
+    padding:7px;
+    margin: 0;
+    border: 3px solid #3E2FED;
 }
+input::placeholder {
+    border-radius: 0;
+    padding: 0;
+    margin: 0;
+    border: none;
+}
+button, input[type="submit"] {
+    background-color: white;
+}
+
+
 
 /* search */
 
 .search {
-    margin-bottom: 15px;
+    margin-bottom: 43px;
 }
 
 .search-form {
@@ -99,15 +109,22 @@ input, button, input::placeholder {
 }
 
 .search-bar {
+    background-color: #3E2FED;
+    color:white;
     display: block;
     width:45%;
     margin-left: 0;
+    margin-right: 10px;
+}
+
+.search-bar::placeholder {
+    background-color: #3E2FED;
+    color:white;
 }
 
 .search-button {
     display: block;
     width: 100px;
-    border: 3px solid #3E2FED;
     background-color: white;
     color: black;
 }
@@ -165,6 +182,22 @@ input, button, input::placeholder {
     justify-content: space-between;
 }
 
+.card-footer {
+    margin-top: 10px;
+    display: flex;
+    justify-content: flex-start;
+}
+
+.card-footer .card-delete {
+    margin: 0;
+    float: right;
+}
+
+.card-footer .card-delete:hover, .card-footer .card-delete a:hover{
+    background-color: #820003;
+    border-color: #820003;
+    color: white;
+}
 
 /* Mobile overriвes */
 
@@ -273,6 +306,56 @@ input, button, input::placeholder {
   font-size: 24px;
 }
 
+/* create form */
+
+
+.form-element {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 43px;
+}
+
+.form-element input, .form-element textarea {
+    width: 100%;
+}
+
+.form-element div {
+    margin: auto 5px;
+    word-break: keep-all;
+    hyphens: none;
+}
+
+.form-element .input-helper {
+    text-align: left;
+    max-width: 30%;
+}
+
+.form-error {
+    border: 3px solid #820003;
+}
+
+.form-name {
+    max-width: 30%;
+}
+
+.form-description, .form-oneliner, .form-cv_url, .form-email {
+    min-width: 60%;
+}
+
+.form-email {
+    color: #3E2FED;
+    font-weight: bold;
+}
+
+.form-description textarea {
+    height: 150px;
+    overflow: visible;
+}
+
+.form-element input[type="submit"] {
+    color: white;
+    background-color: #3E2FED;
+}
 
 @media screen and (min-width: 768px) {
   .navbar {

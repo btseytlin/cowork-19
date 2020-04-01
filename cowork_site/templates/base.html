@@ -1,5 +1,8 @@
 <!doctype html>
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
     <title>Cowork-19</title>
 
     <link rel="stylesheet" href="https://unpkg.com/purecss@1.0.1/build/pure-min.css" integrity="sha384-oAOxQR6DkCoMliIh8yFnu25d7Eq/PHS21PClpwjOTeU2jRSq11vu66rf90/cZr47" crossorigin="anonymous">
@@ -12,6 +15,7 @@
     <!--<![endif]-->
 
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <script src="{{ url_for('static', filename='main.js') }}"></script>
 </head>
 <body>
 <header class="top-bar">
@@ -36,10 +40,10 @@
                     </div>
                 </div>
             </div>
-            <div class="auth ">
+            <div class="auth">
                 {% if current_user.is_authenticated %}
-                  {{ current_user.email }}
-                  <a href="{{ url_for("logout") }}">Log out</a>
+                  <div>{{ current_user.email }}</div>
+                  <div><a href="{{ url_for("logout") }}">Log out</a></div>
                 {% else %}
                   <a class="google-login v-center-child" href="{{ url_for("google.login") }}">
 

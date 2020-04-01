@@ -10,7 +10,7 @@ from covador.flask import query_string
 from cowork_site.models import Posting
 from cowork_site.utils import back_redirect_url
 from cowork_site import config
-from .forms import PostingCreateForm, PostingArchiveForm
+from .forms import PostingCreateForm
 
 
 class BaseView(View):
@@ -63,6 +63,7 @@ class PostingCreateView(BaseView):
         if form.validate_on_submit():
             posting = Posting(
                 name=form.name.data,
+                oneliner=form.oneliner.data,
                 description=form.description.data,
                 cv_url=form.cv_url.data,
 

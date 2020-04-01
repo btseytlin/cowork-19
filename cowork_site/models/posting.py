@@ -17,9 +17,10 @@ class Posting(Base):
     created_at = Column(DateTime, default=datetime.utcnow)
     display = Column(Boolean, default=True)
 
-    name = Column(String)
-    description = Column(Text)
-    cv_url = Column(String)
+    name = Column(String, nullable=False)
+    oneliner = Column(String, nullable=False)
+    description = Column(Text, nullable=False)
+    cv_url = Column(String, nullable=False)
 
     search_vector = Column(TSVectorType('name', 'description'))
 
