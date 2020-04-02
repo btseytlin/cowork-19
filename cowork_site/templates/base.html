@@ -38,7 +38,7 @@
             </div>
             <div class="auth">
                 {% if current_user.is_authenticated %}
-                  <span>{{ current_user.email }}</span>
+                  <span class="user-email">{{ current_user.email }}</span>
                     <a class="logout" href="{{ url_for("logout") }}">Выйти</a>
 
                 {% else %}
@@ -61,7 +61,6 @@
     {% for message in get_flashed_messages() %}
         <div class="flash">{{ message }}</div>
     {% endfor %}
-     <div class="flash">some message</div>
 </div>
 <div class="content">
   {% block content %}{% endblock %}
