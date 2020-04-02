@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="container">
+        <h2>Потерял&#160;работу&#160;из&#8209;за&#160;COVID&#8209;19?
+            <a href="{{ url_for('postings.posting_create') }}">Попробуй</a>&#160;найти&#160;её&#160;здесь.
+        </h2>
+        <div class="links">
+            <ul>
+                <li><a href="#"><img src="https://img.icons8.com/windows/32/000000/telegram-app.png"/> Чат сообщества</a> </li>
+                <li><a href="#"><img src="https://img.icons8.com/windows/32/000000/telegram-app.png"/> Связаться с автором</a></li>
+            </ul>
+        </div>
+    </div>
+{% endblock %}

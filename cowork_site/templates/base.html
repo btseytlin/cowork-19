@@ -24,17 +24,13 @@
             <div class="v-center-parent">
                 <div class="v-center-child">
                     <div class="nav-left">
-                        <span class="navbar-toggle" id="js-navbar-toggle">
-                            <i class="fas fa-bars"></i>
-                        </span>
-
                         <a href="/" class="logo"><img class="pure-img logo-img" src="{{ url_for('static', filename='logo.png') }}" alt="COWORK-19 logo"></img></a>
                         <ul class="main-nav">
                             <li>
-                            <a href="/create" class="nav-links add-resume">Закинуть резюме</a>
+                            <a href="/create" class="nav-links add-resume">Разместить резюме</a>
                             </li>
                             <li>
-                            <a href="/about" class="nav-links">А че за сайт</a>
+                            <a href="/about" class="nav-links">О проекте</a>
                             </li>
                         </ul>
                     </div>
@@ -42,8 +38,9 @@
             </div>
             <div class="auth">
                 {% if current_user.is_authenticated %}
-                  <div>{{ current_user.email }}</div>
-                  <div><a href="{{ url_for("logout") }}">Log out</a></div>
+                  <span>{{ current_user.email }}</span>
+                    <a class="logout" href="{{ url_for("logout") }}">Выйти</a>
+
                 {% else %}
                   <a class="google-login v-center-child" href="{{ url_for("google.login") }}">
 
@@ -64,6 +61,7 @@
     {% for message in get_flashed_messages() %}
         <div class="flash">{{ message }}</div>
     {% endfor %}
+     <div class="flash">some message</div>
 </div>
 <div class="content">
   {% block content %}{% endblock %}

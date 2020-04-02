@@ -1,4 +1,4 @@
-from flask import Flask, abort, flash, redirect, url_for
+from flask import Flask, abort, flash, redirect, url_for, render_template
 from flask.logging import default_handler
 from werkzeug.exceptions import HTTPException
 
@@ -70,5 +70,9 @@ def create_app(config=config.Configuration, session_factory=None):
         if isinstance(error, HTTPException):
             return error
         abort(500)
+
+    @app.route("/about")
+    def about():
+        return render_template('about.html')
 
     return app
