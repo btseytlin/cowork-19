@@ -17,4 +17,4 @@ class Configuration(BaseEnvironConfig):
     OAUTHLIB_INSECURE_TRANSPORT = BooleanConfig(default=False)
 
     # Custom
-    POSTINGS_PER_PAGE = IntConfig(default=1)
+    POSTINGS_PER_PAGE = IntConfig(default=20)
