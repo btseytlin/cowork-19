@@ -3,7 +3,7 @@
     <header>
         <div class="card-title">
             <h3 class="posting-name">{{ object.name }}</h3>
-            <h5 class="created-at">{{ object.created_at.strftime('%Y-%m-%d') }}</h5>
+            <span class="created-at">{{ object.created_at.strftime('%Y-%m-%d') }}</span>
         </div>
         <div class="cv-urls">
             <a href="{{ object.cv_url }}" class="cv-link">CV/Портфолио</a>
