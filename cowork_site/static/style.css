@@ -319,6 +319,17 @@ button, input[type="submit"] {
     background-color: #3E2FED;
 }
 
+/* About page */
+.about-pic {
+    max-width: 30%;
+    margin:auto;
+    margin-top: 40px;
+}
+
+.about-text {
+    max-width: 60%;
+}
+
 /* Mobile overriвes */
 
 @media only screen and (max-width: 768px) {
@@ -390,6 +401,10 @@ button, input[type="submit"] {
     .form-name {
         max-width: 80%;
     }
+
+    .about-text {
+        max-width: 100%;
+    }
 }
 
 
@@ -413,7 +428,7 @@ button, input[type="submit"] {
 }
 
 .main-nav li {
-    text-align: center;
+    text-align: center;about-links
     margin-left: 7px;
     margin-right: 7px;
     margin-top: auto;

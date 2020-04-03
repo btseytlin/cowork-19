@@ -3,7 +3,7 @@ services:
   nginx:
     image: nginx:alpine
     env_file:
-      - prod.env
+      - local.env
     links:
       - cowork_site
     depends_on:
@@ -11,17 +11,15 @@ services:
     ports:
       - 80:80
     volumes:
-      - "./nginx/nginx.conf:/etc/nginx/nginx.conf:ro"
+      - "./nginx/nginx_local.conf:/etc/nginx/nginx.conf:ro"
       - "./nginx/logs:/var/log/nginx/:rw"
       - "./cowork_site/static:/static:ro"
-      - '/etc/letsencrypt/live/cowork19.club/fullchain.pem:/certs/fullchain.pem:ro'
-      - '/etc/letsencrypt/live/cowork19.club/privkey.pem:/certs/privkey.pem:ro'
     networks:
       - cowork-network
   db:
     image: postgres:alpine
     env_file:
-      - prod.env
+      - local.env
     ports:
       - 5432:5432
     volumes:
@@ -39,9 +37,9 @@ services:
       - 8000:8000
     volumes:
       - "./:/app/:ro"
-      - "./migrations/versions/:/app/migrations/versions/:ro"
+      - "./migrations/versions/:/app/migrations/versions/:rw"
     env_file:
-      - prod.env
+      - local.env
     networks:
       - cowork-network
 
