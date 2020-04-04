@@ -61,6 +61,7 @@
           </nav>
         </div>
     </header>
+    <div>
     {%  if  get_flashed_messages()  %}
     <div class="container">
         {% for message in get_flashed_messages() %}
@@ -71,7 +72,7 @@
     <div class="content">
       {% block content %}{% endblock %}
     </div>
-
+    </div>
     <footer>
         <div class="container">
             <ul>
