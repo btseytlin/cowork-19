@@ -117,10 +117,13 @@ footer ul, footer ul li {
 input, button, textarea {
     border-radius: 0;
     padding:7px;
-    padding-right: 1px;
     margin: 0;
     border: 3px solid #3E2FED;
 }
+input, textarea {
+    padding-right: 1px;
+}
+
 input::placeholder {
     border-radius: 0;
     padding: 0;
@@ -325,8 +328,13 @@ button, input[type="submit"] {
 .form-name {
     width: 30%;
 }
+
 .form-oneliner, .form-cv_url {
     width: 60%;
+}
+
+.form-oneliner {
+    max-width: 400px;
 }
 
 .form-description, .form-email {

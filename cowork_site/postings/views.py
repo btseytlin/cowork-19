@@ -59,6 +59,8 @@ class PostingCreateView(BaseView):
     def dispatch_request(self):
         s = current_app.session_factory()
 
+        previous_post = s.query(Posting).filter(Posting.user==current_user, Posting.display==True).one_or_none()
+
         form = PostingCreateForm()
         if form.validate_on_submit():
             posting = Posting(
@@ -69,12 +71,16 @@ class PostingCreateView(BaseView):
 
             )
             posting.user = current_user
+
+            if previous_post:
+                previous_post.display = False
+                s.add(previous_post)
             s.add(posting)
             s.commit()
-            flash('Добавлено')
+            flash('Объявление добавлено')
             return redirect(url_for('postings.posting_list'))
 
-        return self.render_template(form=form)
+        return self.render_template(form=form, previous_post=previous_post)
 
 
 class PostingArchiveView(BaseView):

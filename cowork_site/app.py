@@ -72,6 +72,16 @@ def create_app(config=config.Configuration, session_factory=None):
             return error
         abort(500)
 
+    # Sentry
+    if config.SENTRY_DSD:
+        import sentry_sdk
+        from sentry_sdk.integrations.flask import FlaskIntegration
+
+        sentry_sdk.init(
+            dsn=config.SENTRY_DSD,
+            integrations=[FlaskIntegration()]
+        )
+
     @app.route("/about")
     def about():
         return render_template('about.html')

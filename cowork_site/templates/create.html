@@ -2,6 +2,16 @@
 
 {% block content %}
     <div class="container">
+
+        {% if previous_post %}
+            <h2>Старое объявление будет удалено при публикации нового:</h2>
+            <div class="previous-post">
+                {% with object=previous_post %}
+                    {% include 'posting_card.html' %}
+                {% endwith %}
+            </div>
+        {% endif %}
+
         <h1>Разместить резюме</h1>
         <form class="create-form" method="POST" action="{{ url_for('postings.posting_create') }}">
             {{ form.csrf_token }}

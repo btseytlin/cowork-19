@@ -30,9 +30,9 @@
         </div>
     </div>
     {% if current_user == object.user %}
-    <div class="card-footer">
-       <a onclick="confirm_delete('{{ object.id }}')"> <button class="card-delete">Удалить</button></a>
-    </div>
+        <div class="card-footer">
+           <a onclick="confirm_delete('{{ object.id }}')"> <button class="card-delete">Удалить</button></a>
+        </div>
     {% endif %}
 
 
