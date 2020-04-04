@@ -3,7 +3,7 @@
 {% block content %}
     <div class="container">
         <h1>Разместить резюме</h1>
-        <form method="POST" action="{{ url_for('postings.posting_create') }}">
+        <form class="create-form" method="POST" action="{{ url_for('postings.posting_create') }}">
             {{ form.csrf_token }}
 
             <div class="form-element">
@@ -14,7 +14,7 @@
 
             <div class="form-element">
                 <div class="hidden">{{ form.oneliner.label }}</div>
-                <div class="form-oneliner">{{ form.oneliner(placeholder="40 символов о себе", class="form-error" if form.oneliner.errors else "") }}</div>
+                <div class="form-oneliner">{{ form.oneliner(placeholder="40 символов о себе", maxlength=40, class="form-error" if form.oneliner.errors else "") }}</div>
                 <div class="input-helper">Например: <br/>5 лет во фронтенде и&#160;ещё&#160;потерплю</div>
             </div>
 

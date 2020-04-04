@@ -5,7 +5,7 @@
     <meta name="description" content="Потерял работу из-за COVID? Попробуй найти её здесь.">
 
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>COWORK-19</title>
 
@@ -65,7 +65,7 @@
     {%  if  get_flashed_messages()  %}
     <div class="container">
         {% for message in get_flashed_messages() %}
-            <div class="flash">{{ message }}</div>
+            <div class="flash">{{ message }}💡</div>
         {% endfor %}
     </div>
     {%  endif  %}
