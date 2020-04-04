@@ -16,6 +16,9 @@ class Configuration(BaseEnvironConfig):
     OAUTHLIB_RELAX_TOKEN_SCOPE = BooleanConfig(default=True)
     OAUTHLIB_INSECURE_TRANSPORT = BooleanConfig(default=False)
 
+    # Sentry
+    SENTRY_DSD = ConfigField()
+
     # Custom
     POSTINGS_PER_PAGE = IntConfig(default=20)
     ADMIN_EMAIL = ConfigField()
