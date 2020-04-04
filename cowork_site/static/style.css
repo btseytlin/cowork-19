@@ -365,6 +365,7 @@ button, input[type="submit"] {
 }
 
 .welcome .welcome-close {
+    cursor: pointer;
     float:right;
     text-align: right;
 }
