@@ -46,9 +46,11 @@ body {
   flex-direction: column;
     height: 100%;
 }
+
 body > div {
     flex: 1 0 auto;
 }
+
 footer {
   flex-shrink: 0;
 }

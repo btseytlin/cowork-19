@@ -15,6 +15,7 @@ from cowork_site.db import configure_database
 from cowork_site.models.auth import login_manager
 from cowork_site.auth.google import google_auth_blueprint
 
+from cowork_site.admin import AdminModelView, ProtectedIndexView
 from cowork_site.postings.blueprint import postings_blueprint
 
 
@@ -54,11 +55,11 @@ def create_app(config=config.Configuration, session_factory=None):
 
     app.config['FLASK_ADMIN_SWATCH'] = 'cerulean'
 
-    admin = Admin(app, name='admin', template_mode='bootstrap3')
+    admin = Admin(app, name='admin', index_view=ProtectedIndexView(), template_mode='bootstrap3')
 
     from cowork_site.models import Posting
 
-    admin.add_view(ModelView(Posting, app.session_factory))
+    admin.add_view(AdminModelView(Posting, app.session_factory))
 
     # App blueprints
 
