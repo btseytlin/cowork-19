@@ -84,7 +84,7 @@ footer ul, footer ul li {
     min-height: 60px;
     width:100%;
     padding-bottom: 10px;
-    margin-bottom: 43px;
+    margin-bottom: 23px;
 }
 
 
@@ -229,6 +229,10 @@ button, input[type="submit"] {
     justify-content: space-between;
 }
 
+.posting-card p.description {
+    text-align: justify;
+}
+
 .card-footer {
     margin-top: 10px;
     display: flex;
@@ -355,6 +359,15 @@ button, input[type="submit"] {
     color: white;
     background-color: #3E2FED;
 }
+/* Welcome */
+.welcome {
+    margin-bottom: 30px;
+}
+
+.welcome .welcome-close {
+    float:right;
+    text-align: right;
+}
 
 /* About page */
 .about-pic {
@@ -363,10 +376,13 @@ button, input[type="submit"] {
     margin-top: 40px;
 }
 
-.about-text {
-    max-width: 60%;
+.about {
+    max-width: 70%;
+    text-align: justify;
 }
-
+.about-description {
+    text-align: justify;
+}
 
 /* navbar */
 
@@ -553,7 +569,7 @@ button, input[type="submit"] {
         width: 100%;
     }
 
-    .about-text {
+    .about {
         max-width: 100%;
     }
 
