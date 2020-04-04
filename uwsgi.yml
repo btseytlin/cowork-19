@@ -5,8 +5,8 @@ uwsgi:
   callable: app
   need-app: true
   py-autoreload: 1
-  protocol: uwsgi
   socket: :8000
+  chmod-socket: 666
   enable-threads: 1
   workers: 40
   cheaper: 5
