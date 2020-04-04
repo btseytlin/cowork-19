@@ -6,7 +6,7 @@
             <span class="created-at">{{ object.created_at.strftime('%Y-%m-%d') }}</span>
         </div>
         <div class="cv-urls">
-            <a href="{{ object.cv_url }}" class="cv-link">CV/Портфолио</a>
+            <a href="{{ object.cv_url }}" target="_blank" class="cv-link">CV/Портфолио</a>
         </div>
     </header>
     <div class="card-body">
@@ -26,7 +26,7 @@
             </div>
         </div>
         <div>
-            <a href="mailto:{{ object.user.email }}" class="email-link">{{ object.user.email }}</a>
+            <a href="mailto:{{ object.user.email }}" target="_blank" class="email-link">{{ object.user.email }}</a>
         </div>
     </div>
     {% if current_user == object.user %}
