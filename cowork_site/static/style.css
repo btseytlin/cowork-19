@@ -323,12 +323,14 @@ button, input[type="submit"] {
 }
 
 .form-name {
-    max-width: 30%;
+    width: 30%;
+}
+.form-oneliner, .form-cv_url {
+    width: 60%;
 }
 
-.form-description, .form-oneliner, .form-cv_url, .form-email {
-    min-width: 60%;
-    max-width: 100%;
+.form-description, .form-email {
+    width: 60%;
 }
 
 .form-email {
@@ -532,15 +534,15 @@ button, input[type="submit"] {
         max-width: 100%;
     }
 
-    .form-name {
-        max-width: 80%;
+    .form-name, .form-oneliner {
+        width: 80%;
     }
 
     .form-element {
-        max-width: 80%;
+        width: 80%;
     }
-    .form-description, .form-oneliner, .form-cv_url, .form-email {
-        max-width: 100%;
+    .form-description, .form-cv_url, .form-email {
+        width: 100%;
     }
 
     .about-text {
