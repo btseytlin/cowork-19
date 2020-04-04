@@ -7,3 +7,4 @@ docker-compose.yml
 *.pyc
 *.mp4
 */__pycache__/*
+./nginx/logs/*
