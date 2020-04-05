@@ -24,3 +24,4 @@ flask-login
 blinker
 SQLAlchemy-Searchable
 sentry-sdk[flask]==0.14.3
+ddtrace
