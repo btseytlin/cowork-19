@@ -1,5 +1,15 @@
 version: "3.7"
 services:
+  dd-agent:
+    image: datadog/agent:7
+    volumes:
+      - "/var/run/docker.sock:/var/run/docker.sock:ro"
+      - "/proc/:/host/proc/:ro"
+      - "/sys/fs/cgroup/:/host/sys/fs/cgroup:ro"
+    env_file:
+      - prod.env
+    networks:
+      - cowork-network
   nginx:
     image: nginx:alpine
     env_file:
