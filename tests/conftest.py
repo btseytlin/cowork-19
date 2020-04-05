@@ -15,7 +15,7 @@ def config(monkeypatch):
 
     TestConfig.TESTING = True
     TestConfig.DEBUG = True
-    TestConfig.CACHE_TYPE = 'NULL'
+    TestConfig.CACHE_TYPE = None
 
     monkeypatch.setattr('cowork_site.config.Configuration', TestConfig)
     return TestConfig
