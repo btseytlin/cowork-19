@@ -22,3 +22,10 @@ class Configuration(BaseEnvironConfig):
     # Custom
     POSTINGS_PER_PAGE = IntConfig(default=20)
     ADMIN_EMAIL = ConfigField()
+
+    # Cache
+    CACHE_TYPE = ConfigField(default='redis')
+    CACHE_DEFAULT_TIMEOUT = IntConfig(default=9999)
+    CACHE_HOST = ConfigField(default='redis')
+    CACHE_PORT = IntConfig(default=6379)
+    CACHE_REDIS_DB = IntConfig(default=0)

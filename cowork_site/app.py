@@ -24,6 +24,7 @@ from cowork_site.utils import configure_logger
 from cowork_site.db import configure_database
 from cowork_site.models.auth import login_manager
 from cowork_site.auth.google import google_auth_blueprint
+from cowork_site.cache import cache
 
 from cowork_site.admin import AdminModelView, ProtectedIndexView
 from cowork_site.postings.blueprint import postings_blueprint
@@ -46,6 +47,9 @@ def create_app(config=config.Configuration, session_factory=None):
 
     configure_database(app, config.SQLALCHEMY_URL, config.DB_ECHO, session_factory)
 
+    # Cache
+
+    cache.init_app(app)
 
     # OAuth
 
@@ -92,7 +96,7 @@ def create_app(config=config.Configuration, session_factory=None):
             integrations=[FlaskIntegration()]
         )
 
-
+    @cache.cached(999)
     @app.route("/about")
     def about():
         return render_template('about.html')
