@@ -63,6 +63,18 @@ services:
       - prod.env
     networks:
       - cowork-network
+  redis:
+    image: redis:alpine
+    links:
+      - cowork_site
+    depends_on:
+      - cowork_site
+    ports:
+      - 6379:6379
+    env_file:
+      - local.env
+    networks:
+      - cowork-network
 
 networks:
   cowork-network:
