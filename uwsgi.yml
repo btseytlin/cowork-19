@@ -7,7 +7,5 @@ uwsgi:
   protocol: uwsgi
   socket: :8000
   enable-threads: 1
-  workers: 10
-  cheaper: 2
   plugins:
     - python3
