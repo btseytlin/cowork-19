@@ -5,6 +5,7 @@ from cowork_site.db import get_db_engine
 
 from .common import sqla_session_factory
 
+
 @pytest.fixture(scope="function")
 def config(monkeypatch):
     from cowork_site.config import Configuration
@@ -14,6 +15,7 @@ def config(monkeypatch):
 
     TestConfig.TESTING = True
     TestConfig.DEBUG = True
+    TestConfig.CACHE_TYPE = 'NULL'
 
     monkeypatch.setattr('cowork_site.config.Configuration', TestConfig)
     return TestConfig
