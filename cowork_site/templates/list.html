@@ -26,29 +26,37 @@
             </form>
         </div>
 
-            <div class="caniddate-list">
-              {% for object in objects %}
-                  {% include 'posting_card.html' %}
-              {% endfor %}
-            </div>
+            {%  if objects %}
+                {% cache 60, objects[0].id, objects[-1].id %}
 
-            <div class="pagination">
-                <div class="pagination-element">
-                {% if page > 1 %}
-                      <a href="/?page=1"><button class="button">⤌ начало</button></a>
+                    <div class="caniddate-list">
+
+                                  {% for object in objects %}
+                                      {% include 'posting_card.html' %}
+                                  {% endfor %}
+
+                    </div>
+
+                    <div class="pagination">
+                        <div class="pagination-element">
+                        {% if page > 1 %}
+                              <a href="/?page=1"><button class="button">⤌ начало</button></a>
+                        {% endif %}
+                        </div>
+                        <div>
+                        {% if page > 1 %}
+                             <a href="/?page={{ page-1 }}"><button class="button">⟵ {{ page-1 }}</button></a>
+                        {% endif %}
+                        </div>
+                        <div>
+                        {% if not is_last_page %}
+                            <a href="/?page={{ page+1 }}"><button class="button">{{ page+1 }} ⟶</button></a>
+                        {% endif %}
+                        </div>
+                    </div>
+
+                    {% endcache %}
                 {% endif %}
-                </div>
-                <div>
-                {% if page > 1 %}
-                     <a href="/?page={{ page-1 }}"><button class="button">⟵ {{ page-1 }}</button></a>
-                {% endif %}
-                </div>
-                <div>
-                {% if not is_last_page %}
-                    <a href="/?page={{ page+1 }}"><button class="button">{{ page+1 }} ⟶</button></a>
-                {% endif %}
-                </div>
-            </div>
 
 
     </div>
