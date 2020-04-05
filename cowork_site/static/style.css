@@ -13,6 +13,16 @@ html {
     hyphens: none;
 }
 
+img {
+    height: auto;
+    display: block;
+    max-width: 100%;
+}
+
+.img-inline {
+    display: inline-block;
+}
+
 h1, h2 {
     line-height: 30px;
 }

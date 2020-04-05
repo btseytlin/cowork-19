@@ -9,14 +9,7 @@
 
     <title>COWORK-19</title>
 
-    <link rel="stylesheet" href="https://unpkg.com/purecss@1.0.1/build/pure-min.css" integrity="sha384-oAOxQR6DkCoMliIh8yFnu25d7Eq/PHS21PClpwjOTeU2jRSq11vu66rf90/cZr47" crossorigin="anonymous">
-
-    <!--[if lte IE 8]>
-        <link rel="stylesheet" href="https://unpkg.com/purecss@1.0.1/build/grids-responsive-old-ie-min.css">
-    <![endif]-->
-    <!--[if gt IE 8]><!-->
-        <link rel="stylesheet" href="https://unpkg.com/purecss@1.0.1/build/grids-responsive-min.css">
-    <!--<![endif]-->
+    <link rel="stylesheet" href="https://unpkg.com/purecss@1.0.1/build/base-min.css">
 
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
     <script src="{{ url_for('static', filename='main.js') }}"></script>
@@ -39,7 +32,7 @@
                 <div class="v-center-parent">
                     <div class="v-center-child">
                         <div class="nav-left">
-                            <a href="/" class="logo"><img class="pure-img logo-img" src="{{ url_for('static', filename='logo.png') }}" alt="COWORK-19 logo"></img></a>
+                            <a href="/" class="logo"><img class="logo-img" src="{{ url_for('static', filename='logo.png') }}" alt="COWORK-19 logo"></img></a>
                             <ul class="main-nav">
                                 <li>
                                 <a href="/create" class="nav-links add-resume">Разместить резюме</a>
