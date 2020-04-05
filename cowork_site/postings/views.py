@@ -78,7 +78,7 @@ class PostingCreateView(BaseView):
                 s.add(previous_post)
             s.add(posting)
             s.commit()
-            current_app.cache.delete_memoized(get_all_postings)
+            cache.delete_memoized(get_all_postings)
             flash('Добавлено')
             return redirect(url_for('postings.posting_list'))
 
@@ -100,7 +100,7 @@ class PostingArchiveView(BaseView):
             posting.display = False
             s.add(posting)
             s.commit()
-            current_app.cache.delete_memoized(get_all_postings)
+            cache.delete_memoized(get_all_postings)
             flash('Архивировано')
         else:
             flash('А ты не можешь это архивировать')

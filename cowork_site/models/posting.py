@@ -24,4 +24,4 @@ class Posting(Base):
 
     search_vector = Column(TSVectorType('name', 'description'))
 
-    user = relationship("User", backref="postings")
+    user = relationship("User", backref="postings", lazy='joined')

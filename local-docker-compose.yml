@@ -72,6 +72,8 @@ services:
       - local.env
     networks:
       - cowork-network
+    logging:
+      driver: none
 
 networks:
   cowork-network:
