@@ -4,7 +4,6 @@ uwsgi:
   wsgi-file: /app/cowork_site/wsgi.py
   callable: app
   need-app: true
-  py-autoreload: 1
   protocol: uwsgi
   socket: :8000
   enable-threads: 1
