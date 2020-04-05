@@ -1,13 +1,23 @@
+from ddtrace import tracer
+
+tracer.configure(
+    hostname='dd-agent',
+    port=8126,
+)
+
+from ddtrace import patch_all, patch
+patch_all()
+patch(sqlalchemy=True)
+
+
 from flask import Flask, abort, flash, redirect, url_for, render_template
 from flask.logging import default_handler
 from werkzeug.exceptions import HTTPException
-
 
 from flask_cors import CORS
 from flask_admin import Admin
 from flask_admin.contrib.sqla import ModelView
 from flask_login import login_required, logout_user
-
 
 from cowork_site import config
 from cowork_site.utils import configure_logger
@@ -81,6 +91,7 @@ def create_app(config=config.Configuration, session_factory=None):
             dsn=config.SENTRY_DSD,
             integrations=[FlaskIntegration()]
         )
+
 
     @app.route("/about")
     def about():

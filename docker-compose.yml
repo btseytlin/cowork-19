@@ -6,10 +6,18 @@ services:
       - "/var/run/docker.sock:/var/run/docker.sock:ro"
       - "/proc/:/host/proc/:ro"
       - "/sys/fs/cgroup/:/host/sys/fs/cgroup:ro"
+    ports:
+      - 8126:8126
+    links:
+      - cowork_site
+    depends_on:
+      - cowork_site
     env_file:
       - prod.env
     networks:
       - cowork-network
+    logging:
+      driver: none
   nginx:
     image: nginx:alpine
     env_file:
