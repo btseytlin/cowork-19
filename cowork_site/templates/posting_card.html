@@ -19,7 +19,11 @@
               <div class="collapsible-content">
                 <div class="content-inner">
                   <p class="description">
-                    {{ object.description }}
+                      {% for line in object.description.split('\n')  %}
+                          {% if line.strip() %}
+                            <span>{{ line.strip() }}</span>
+                          {%  endif %}
+                      {% endfor %}
                   </p>
                 </div>
               </div>
