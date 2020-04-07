@@ -241,6 +241,12 @@ button, input[type="submit"] {
 
 .posting-card p.description {
     text-align: justify;
+    max-height: 400px;
+    overflow: hidden;
+}
+
+.posting-card p.description span {
+    display: block;
 }
 
 .card-footer {

@@ -46,7 +46,7 @@ services:
       - cowork-network
   cowork_site:
     build: .
-    command: sh -c './wait-for-it.sh db:5432 && alembic upgrade head && uwsgi --yaml /app/uwsgi.yml'
+    command: sh -c './wait-for-it.sh db:5432 && alembic upgrade head && uwsgi --yaml /app/uwsgi_local.yml'
     links:
       - db
     depends_on:

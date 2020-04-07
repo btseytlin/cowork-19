@@ -65,10 +65,10 @@ class PostingCreateView(BaseView):
         form = PostingCreateForm()
         if form.validate_on_submit():
             posting = Posting(
-                name=form.name.data,
-                oneliner=form.oneliner.data,
-                description=form.description.data,
-                cv_url=form.cv_url.data,
+                name=form.name.data.strip(),
+                oneliner=form.oneliner.data.strip(),
+                description=form.description.data.strip(),
+                cv_url=form.cv_url.data.strip(),
 
             )
             posting.user = current_user
