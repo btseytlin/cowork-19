@@ -6,8 +6,6 @@ services:
       - "/var/run/docker.sock:/var/run/docker.sock:ro"
       - "/proc/:/host/proc/:ro"
       - "/sys/fs/cgroup/:/host/sys/fs/cgroup:ro"
-    ports:
-      - 8126:8126
     links:
       - cowork_site
     depends_on:
@@ -52,8 +50,6 @@ services:
       - db
     depends_on:
       - db
-    ports:
-      - 8000:8000
     volumes:
       - "./:/app/:ro"
       - "./migrations/versions/:/app/migrations/versions/:ro"
