@@ -1,5 +1,7 @@
 from ddtrace import tracer
 
+from cowork_site.models import NeedWorkPosting
+
 tracer.configure(
     hostname='dd-agent',
     port=8126,
@@ -16,7 +18,6 @@ from werkzeug.exceptions import HTTPException
 
 from flask_cors import CORS
 from flask_admin import Admin
-from flask_admin.contrib.sqla import ModelView
 from flask_login import login_required, logout_user
 
 from cowork_site import config
@@ -26,7 +27,8 @@ from cowork_site.models.auth import login_manager
 from cowork_site.auth.google import google_auth_blueprint
 from cowork_site.cache import cache
 
-from cowork_site.admin import AdminModelView, ProtectedIndexView
+from cowork_site.admin import (AdminModelView, ProtectedIndexView,
+                               NeedTeamModelView)
 from cowork_site.postings.blueprint import postings_blueprint
 
 
@@ -71,10 +73,11 @@ def create_app(config=config.Configuration, session_factory=None):
 
     admin = Admin(app, name='admin', index_view=ProtectedIndexView(), template_mode='bootstrap3')
 
-    from cowork_site.models import Posting
+    from cowork_site.models import Posting, NeedTeamPosting
 
     admin.add_view(AdminModelView(Posting, app.session_factory))
-
+    admin.add_view(NeedTeamModelView(NeedTeamPosting, app.session_factory))
+    admin.add_view(NeedTeamModelView(NeedWorkPosting, app.session_factory))
     # App blueprints
 
     app.register_blueprint(postings_blueprint)
@@ -100,5 +103,11 @@ def create_app(config=config.Configuration, session_factory=None):
     @app.route("/about")
     def about():
         return render_template('about.html')
+
+    @cache.cached(999)
+    @app.route("/about_team_channel")
+    def about_team_channel():
+        return render_template('about_team_channel.html')
+
 
     return app
