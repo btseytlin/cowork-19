@@ -16,8 +16,8 @@
         <form class="create-form" method="POST" action="{{ url_for('postings.posting_create') }}">
             {{ form.csrf_token }}
 
-            <div class="form-errors">
-                {%  if form.errors %}
+            {%  if form.errors %}
+                <div class="form-errors">
                     <ul>
                         {%  for field in form.errors %}
                             {% for error in form.errors[field] %}
@@ -25,8 +25,8 @@
                             {% endfor %}
                         {% endfor %}
                     </ul>
-                {% endif %}
-            </div>
+                </div>
+            {% endif %}
 
             <div class="form-element">
                 <div class="hidden">{{ form.name.label }}</div>

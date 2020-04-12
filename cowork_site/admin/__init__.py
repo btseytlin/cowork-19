@@ -12,9 +12,9 @@ class AdminModelView(sqla.ModelView):
     column_searchable_list = ['name', 'description', 'user.email']
     column_filters = ['display']
     column_sortable_list = ['created_at',]
-    column_default_sort = ('created_at', True)
+    column_default_sort = [('display', True), ('created_at', True)]
 
-    column_list = ('user.email', 'name', 'oneliner', 'description', 'cv_url')
+    column_list = ('user.email', 'name', 'oneliner', 'description', 'cv_url', 'display')
 
     form_ajax_refs = {
         'user': {
@@ -31,7 +31,7 @@ class AdminModelView(sqla.ModelView):
 
 
 class NeedTeamModelView(AdminModelView):
-    column_list = ('user.email', 'name', 'oneliner', 'description', 'url', 'contact')
+    column_list = ('user.email', 'name', 'oneliner', 'description', 'url', 'contact', 'display')
 
 
 class ProtectedIndexView(AdminIndexView):
