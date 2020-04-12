@@ -21,4 +21,4 @@ def back_redirect_url(default='postings.posting_list'):
 
 
 def is_admin(user):
-    return config.Configuration.ADMIN_EMAIL and user.email == config.Configuration.ADMIN_EMAIL
+    return config.Configuration.ADMIN_EMAILS and user.email in config.Configuration.ADMIN_EMAILS

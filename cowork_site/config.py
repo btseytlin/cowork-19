@@ -8,7 +8,7 @@ class Configuration(BaseEnvironConfig):
     SECRET_KEY = ConfigField(default=__name__)
     SQLALCHEMY_URL = ConfigField(required=True)
 
-    LOG_LEVEL = IntConfig(default=10)
+    LOG_LEVEL = IntConfig(default=20)
 
     # Google auth
     GOOGLE_CLIENT_ID = ConfigField(required=True)
@@ -21,7 +21,7 @@ class Configuration(BaseEnvironConfig):
 
     # Custom
     POSTINGS_PER_PAGE = IntConfig(default=20)
-    ADMIN_EMAIL = ConfigField()
+    ADMIN_EMAILS = ConfigField(processor=lambda text: [t.strip().lower() for t in text.split(',') if t.strip()])
 
     # Cache
     CACHE_TYPE = ConfigField(default='redis')

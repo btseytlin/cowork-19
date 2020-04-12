@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container">
+
+    <h1>Спасибо!</h1>
+    <h2>Запись скоро будет размещена в канале.</h2>
+    <ul>
+        <li><a href="#">Канал</a></li>
+        <li><a href="{{ url_for('postings.posting_list') }}">На главную</a></li>
+    </ul>
+</div>
+{% endblock %}

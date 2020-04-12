@@ -8,10 +8,10 @@ from covador import split, opt
 from covador.flask import query_string
 
 from cowork_site.cache import cache
-from cowork_site.models import Posting
+from cowork_site.models import Posting, NeedTeamPosting, NeedWorkPosting
 from cowork_site.utils import back_redirect_url
 from cowork_site import config
-from .forms import PostingCreateForm
+from .forms import PostingCreateForm, TeamPostingCreateForm
 
 
 @cache.memoize(300)
@@ -105,3 +105,58 @@ class PostingArchiveView(BaseView):
         else:
             flash('А ты не можешь это архивировать')
         return redirect(back_redirect_url())
+
+
+class PostingThanksView(BaseView):
+    template_name = 'thanks.html'
+
+    def dispatch_request(self):
+        return render_template(self.template_name)
+
+
+class NeedTeamPostingCreateView(BaseView):
+    template_name = 'need_team_form.html'
+    decorators = [login_required]
+
+    def dispatch_request(self):
+        s = current_app.session_factory()
+
+        form = TeamPostingCreateForm()
+        if form.validate_on_submit():
+            posting = NeedTeamPosting(
+                name=form.name.data.strip(),
+                oneliner=form.oneliner.data.strip(),
+                description=form.description.data.strip(),
+                url=form.url.data.strip(),
+                contact=form.contact.data.strip(),
+            )
+            posting.user = current_user
+            s.add(posting)
+            s.commit()
+            return redirect(url_for('postings.posting_thanks'))
+
+        return self.render_template(form=form)
+
+
+class NeedWorkPostingCreateView(BaseView):
+    template_name = 'need_work_form.html'
+    decorators = [login_required]
+
+    def dispatch_request(self):
+        s = current_app.session_factory()
+
+        form = TeamPostingCreateForm()
+        if form.validate_on_submit():
+            posting = NeedWorkPosting(
+                name=form.name.data.strip(),
+                oneliner=form.oneliner.data.strip(),
+                description=form.description.data.strip(),
+                url=form.url.data.strip(),
+                contact=form.contact.data.strip(),
+            )
+            posting.user = current_user
+            s.add(posting)
+            s.commit()
+            return redirect(url_for('postings.posting_thanks'))
+
+        return self.render_template(form=form)

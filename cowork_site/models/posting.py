@@ -25,3 +25,37 @@ class Posting(Base):
     search_vector = Column(TSVectorType('name', 'description'))
 
     user = relationship("User", backref="postings", lazy='joined')
+
+
+class NeedTeamPosting(Base):
+    __tablename__ = 'posting_need_team'
+
+    id = Column(UUID, primary_key=True, default=lambda: str(uuid4()), index=True)
+    user_id = Column(UUID, ForeignKey('user.id'))
+    created_at = Column(DateTime, default=datetime.utcnow)
+    display = Column(Boolean, default=True)
+
+    name = Column(String, nullable=False)
+    oneliner = Column(String, nullable=False)
+    description = Column(Text, nullable=False)
+    url = Column(String, nullable=True)
+    contact = Column(String, nullable=True)
+
+    user = relationship("User", lazy='joined')
+
+
+class NeedWorkPosting(Base):
+    __tablename__ = 'posting_need_work'
+
+    id = Column(UUID, primary_key=True, default=lambda: str(uuid4()), index=True)
+    user_id = Column(UUID, ForeignKey('user.id'))
+    created_at = Column(DateTime, default=datetime.utcnow)
+    display = Column(Boolean, default=True)
+
+    name = Column(String, nullable=False)
+    oneliner = Column(String, nullable=False)
+    description = Column(Text, nullable=False)
+    url = Column(String, nullable=True)
+    contact = Column(String, nullable=True)
+
+    user = relationship("User", lazy='joined')

@@ -319,7 +319,19 @@ button, input[type="submit"] {
 
 /* create form */
 
+.create-form {
+    margin-top: 15px;
+}
 
+.form-errors {
+    border: 3px solid #820003;
+    padding:3px;
+    margin-bottom: 10px;
+}
+
+.form-errors ul {
+    margin: 0;
+}
 .form-element {
     display: flex;
     justify-content: space-between;
