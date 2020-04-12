@@ -8,6 +8,18 @@
         <form class="create-form need-team-form" method="POST" action="{{ url_for('postings.need_team') }}">
             {{ form.csrf_token }}
 
+            <div class="form-errors">
+                {%  if form.errors %}
+                    <ul>
+                        {%  for field in form.errors %}
+                            {% for error in form.errors[field] %}
+                                <li>{{ form[field].label }}: {{ error }}</li>
+                            {% endfor %}
+                        {% endfor %}
+                    </ul>
+                {% endif %}
+            </div>
+
             <div class="form-element">
                 <div class="hidden">{{ form.name.label }}</div>
                 <div class="form-name">{{ form.name(placeholder="Заголовок", class="form-error" if form.name.errors else "") }}</div>
