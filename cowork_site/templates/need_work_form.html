@@ -5,6 +5,12 @@
 
         <h1>Команда ищет проект</h1>
 
+        <div class="form-explanation">
+                <p>Расскажите о своей команде и о том, какие предложения вы ищете.</p>
+
+                <p>Мы стараемся помогать компаниям в рамках кризиса (текущего и надвигающегося). </p>
+        </div>
+
         <form class="create-form need-team-form" method="POST" action="{{ url_for('postings.team_needs_work') }}">
             {{ form.csrf_token }}
 
@@ -23,26 +29,26 @@
 
             <div class="form-element">
                 <div class="hidden">{{ form.name.label }}</div>
-                <div class="form-name">{{ form.name(placeholder="Заголовок", class="form-error" if form.name.errors else "") }}</div>
-                <div class="input-helper">50 символов</div>
+                <div class="form-name">{{ form.name(placeholder="Чем занимается команда?", class="form-error" if form.name.errors else "") }}</div>
+                <div class="input-helper">Например: Колл-центр из туризма, разработка приложений для Италии</div>
             </div>
 
             <div class="form-element">
                 <div class="hidden">{{ form.oneliner.label }}</div>
-                <div class="form-oneliner">{{ form.oneliner(placeholder="Подзаголовок", maxlength=40, class="form-error" if form.oneliner.errors else "") }}</div>
-                <div class="input-helper">80 символов</div>
+                <div class="form-oneliner">{{ form.oneliner(placeholder="В каком составе?", maxlength=40, class="form-error" if form.oneliner.errors else "") }}</div>
+                <div class="input-helper">Например: 5 отважных бойцов, 1 аналитик и 1 руководитель</div>
             </div>
 
             <div class="form-element">
                 <div class="hidden">{{ form.description.label }}</div>
-                <div class="form-description">{{ form.description(placeholder="Описание", maxlength=300, class="form-error" if form.description.errors else "") }}</div>
-                <div class="input-helper">500 символов</div>
+                <div class="form-description">{{ form.description(placeholder="Что умеет команда и как оценивается? Какие предложения вы ищете?", maxlength=300, class="form-error" if form.description.errors else "") }}</div>
+                <div class="input-helper">Например: Как будда сидим в битрикс24, можем продать акции МММ в 2020 году, пишем код в перчатках, общаемся с клиентами без масок</div>
             </div>
 
             <div class="form-element">
                 <div class="hidden">{{ form.url.label }}</div>
-                <div class="form-url">{{ form.url(type=url, placeholder="Ссылка", class="form-error" if form.url.errors else "") }}</div>
-                <div class="input-helper"></div>
+                <div class="form-url">{{ form.url(type=url, placeholder="Красивый сайт", class="form-error" if form.url.errors else "") }}</div>
+                <div class="input-helper">Необязательное поле. Но можно пропиарить ответственных руководителей</div>
             </div>
 
 
@@ -55,11 +61,11 @@
             <div class="form-element">
                 <div class="hidden">{{ form.contact.label }}</div>
                 <div class="form-contact">{{ form.contact(type=contact, placeholder="Дополнительный контакт", class="form-error" if form.url.errors else "") }}</div>
-                <div class="input-helper">Например номер телефона</div>
+                <div class="input-helper">Поудобнее, чем почта. Номер телефона, Telegram, ТамТам, ICQ, Jabber</div>
             </div>
 
             <div class="form-element">
-                <input type="submit" value="Разместить">
+                <input type="submit" value="Разместить в канале">
             </div>
 
         </form>
