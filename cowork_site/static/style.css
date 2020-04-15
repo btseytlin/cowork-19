@@ -357,21 +357,19 @@ button, input[type="submit"] {
     border: 3px solid #820003;
 }
 
-.form-name {
-    width: 30%;
-}
 
-.form-oneliner, .form-cv_url {
+
+.form-name,
+.form-oneliner,
+.form-cv_url,
+.form-description, .form-email,
+.form-cv_url,
+.form-url,
+.form-contact {
     width: 60%;
 }
 
-.form-oneliner {
-    max-width: 400px;
-}
 
-.form-description, .form-email {
-    width: 60%;
-}
 
 .form-email {
     color: #3E2FED;
@@ -388,9 +386,6 @@ button, input[type="submit"] {
     background-color: #3E2FED;
 }
 
-.need-team-form .form-contact {
-
-}
 
 .form-explanation {
     width: 15%;
@@ -607,14 +602,18 @@ button, input[type="submit"] {
         max-width: 100%;
     }
 
-    .form-name, .form-oneliner {
-        width: 80%;
-    }
 
     .form-element {
         width: 80%;
     }
-    .form-description, .form-cv_url, .form-email {
+
+    .form-name,
+    .form-oneliner,
+    .form-cv_url,
+    .form-description, .form-email,
+    .form-cv_url,
+    .form-url,
+    .form-contact {
         width: 100%;
     }
 
