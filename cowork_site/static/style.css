@@ -78,6 +78,10 @@ footer ul, footer ul li {
     text-align: right;
 }
 
+.content {
+    margin-top: 15px;
+}
+
 .logo {
 
     text-align: center;
@@ -86,7 +90,7 @@ footer ul, footer ul li {
 }
 
 .logo-img {
-    max-width: 200px;
+    width: 200px;
 }
 
 .top-bar {
@@ -100,7 +104,7 @@ footer ul, footer ul li {
 
 .container {
     padding: 5px 0;
-    width: 44%;
+    width: 700px;
     margin: 0 auto;
 }
 
@@ -448,7 +452,6 @@ button, input[type="submit"] {
 
 }
 
-
 .navbar {
     display: flex;
     justify-content: space-between;
@@ -473,9 +476,7 @@ button, input[type="submit"] {
 /* Mobile overriвes */
 
 @media only screen and (max-width: 1400px) {
-    .container {
-        width: 80%;
-    }
+
 
     .navbar {
         /*display: flex;*/
@@ -514,23 +515,31 @@ button, input[type="submit"] {
         justify-content: space-between;
     }
 
-    .logo {
-        float:right;
-        margin:15px 0 0 0;
-    }
-    .logo img {
-        max-width: 150px;
-    }
+
 
     .form-explanation {
         position: inherit;
         display: block;
         width: 60%;
     }
+
+    .google-button {
+        height: 25px;
+        padding: 0;
+    }
+    .google-button .google-button__icon {
+        margin: 0;
+        margin-bottom: 2px;
+        margin-left: 5px;
+    }
+    .google-button .google-button__text {
+        padding: 0 4px 0px 2px;
+    }
+
 }
 
 
-@media only screen and (max-width: 768px) {
+@media only screen and (max-width: 825px) {
     html {
         font-size: 12px;
         line-height: 8px;
@@ -559,8 +568,8 @@ button, input[type="submit"] {
     }
     .search-bar {
         width:65%;
-
     }
+
     .posting-card header {
         display: block;
     }
@@ -575,19 +584,6 @@ button, input[type="submit"] {
     .posting-card header .card-title .created-at {
         margin: 0;
         display: block;
-    }
-
-    .google-button {
-        height: 25px;
-        padding: 0;
-    }
-    .google-button .google-button__icon {
-        margin: 0;
-        margin-bottom: 2px;
-        margin-left: 5px;
-    }
-    .google-button .google-button__text {
-        padding: 0 4px 0px 2px;
     }
 
     .form-element {
@@ -646,9 +642,6 @@ https://alligator.io/css/collapsible/
   transition: all 0.25s ease-out;
 }
 
-.collapse-lbl-toggle:hover {
-
-}
 
 .collapse-lbl-toggle::after {
   content: ' ';
@@ -683,4 +676,145 @@ https://alligator.io/css/collapsible/
 .collapse-toggle:checked + .collapse-lbl-toggle {
   border-bottom-right-radius: 0;
   border-bottom-left-radius: 0;
+}
+
+/* navbar */
+.nav {
+  height: 50px;
+  width: 100%;
+  position: relative;
+    background: #E0E0E0;
+    display: flex;
+    justify-content: center;
+}
+
+
+
+.nav > .nav-header {
+  display: inline-block;
+}
+
+.nav > .nav-header, .nav > .nav-auth {
+    width: 220px;
+}
+
+.nav > .nav-auth {
+    padding-top: 5px;
+}
+
+.nav > .nav-header > .nav-title, .nav > .nav-header > .nav-title-sm {
+  display: inline-block;
+  font-size: 22px;
+  padding: 10px 10px 10px 10px;
+}
+
+.nav > .nav-header > .nav-title-sm {
+    display: none;
+}
+
+.nav > .nav-btn {
+  display: none;
+}
+
+.nav > .nav-links {
+  display: inline;
+  float: left;
+  font-size: 18px;
+
+    width: 700px;
+}
+
+.nav > .nav-links > a {
+  display: inline-block;
+  padding: 13px 10px 13px 10px;
+  text-decoration: none;
+    color: #3E2FED;
+}
+
+.nav > .nav-links > a:hover {
+    text-decoration: underline;
+}
+
+
+.nav > #nav-check {
+  display: none;
+}
+
+@media only screen and (max-width: 1400px) {
+    .nav {
+        justify-content: flex-start;
+    }
+
+    .nav > .nav-auth {
+        padding-top: 13px;
+        margin-left: 10px;
+    }
+
+
+    .nav > .nav-links {
+        width: auto;
+    }
+
+    .nav > .nav-links > a {
+        display: inline-block;
+        padding: 13px 3px 13px 3px;
+    }
+
+    .nav > .nav-header, .nav > .nav-auth {
+        width: auto;
+    }
+}
+
+@media (max-width:825px) {
+    .nav > .nav-header > .nav-title-sm {
+        display: inline-block;
+    }
+    .nav > .nav-header > .nav-title {
+        display: none;
+    }
+
+  .nav > .nav-btn {
+    display: inline-block;
+    position: absolute;
+    right: 0px;
+    top: 0px;
+  }
+  .nav > .nav-btn > label {
+    display: inline-block;
+    width: 50px;
+    height: 50px;
+    padding: 13px;
+  }
+  .nav > .nav-btn > label:hover,.nav  #nav-check:checked ~ .nav-btn > label {
+
+  }
+
+  .nav > .nav-btn > label > span {
+    display: block;
+    width: 25px;
+    height: 10px;
+    border-top: 2px solid black;
+  }
+  .nav > .nav-links {
+    position: absolute;
+    display: block;
+    width: 100%;
+    background-color: #E0E0E0;
+    height: 0px;
+    transition: all 0.1s ease-in;
+    overflow-y: hidden;
+    top: 50px;
+    left: 0px;
+  }
+  .nav > .nav-links > a {
+    display: block;
+    width: 100%;
+  }
+  .nav > #nav-check:not(:checked) ~ .nav-links {
+    height: 0px;
+  }
+  .nav > #nav-check:checked ~ .nav-links {
+    height: calc(100vh - 50px);
+    overflow-y: auto;
+  }
 }
