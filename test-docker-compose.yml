@@ -13,12 +13,25 @@ services:
       - "./:/app/:ro"
     links:
       - test_db
+      - redis
     depends_on:
       - test_db
+      - redis
     env_file:
       - test.env
     networks:
       - test-cowork-network
+  redis:
+    image: redis:alpine
+    command: [sh, -c, "rm -f /data/dump.rdb && redis-server", "--save", ""]
+    ports:
+      - 6379:6379
+    env_file:
+      - test.env
+    networks:
+      - test-cowork-network
+    logging:
+      driver: none
 
 networks:
   test-cowork-network:

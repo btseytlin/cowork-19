@@ -1,7 +1,9 @@
 import os
 import pytest
+from flask_caching import Cache
 from cowork_site.app import create_app
 from cowork_site.db import get_db_engine
+from cowork_site.cache import cache
 
 from .common import sqla_session_factory
 
@@ -15,11 +17,9 @@ def config(monkeypatch):
 
     TestConfig.TESTING = True
     TestConfig.DEBUG = True
-    TestConfig.CACHE_TYPE = None
 
     monkeypatch.setattr('cowork_site.config.Configuration', TestConfig)
     return TestConfig
-
 
 @pytest.fixture(scope="function")
 def engine(config):
@@ -59,10 +59,11 @@ def session(session_factory):
     session.close()
 
 
-@pytest.fixture
+@pytest.yield_fixture
 def app(session_factory, config):
     app = create_app(config=config, session_factory=session_factory)
-    return app
+    yield app
+    cache.clear()
 
 
 @pytest.fixture(scope='function')

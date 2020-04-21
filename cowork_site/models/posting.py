@@ -22,7 +22,7 @@ class Posting(Base):
     description = Column(Text, nullable=False)
     cv_url = Column(String, nullable=False)
 
-    search_vector = Column(TSVectorType('name', 'description'))
+    search_vector = Column(TSVectorType('name', 'oneliner', 'description'))
 
     user = relationship("User", backref="postings", lazy='joined')
 
@@ -41,6 +41,8 @@ class NeedTeamPosting(Base):
     url = Column(String, nullable=True)
     contact = Column(String, nullable=True)
 
+    search_vector = Column(TSVectorType('name', 'oneliner', 'description'))
+
     user = relationship("User", lazy='joined')
 
 
@@ -57,5 +59,7 @@ class NeedWorkPosting(Base):
     description = Column(Text, nullable=False)
     url = Column(String, nullable=True)
     contact = Column(String, nullable=True)
+
+    search_vector = Column(TSVectorType('name', 'oneliner', 'description'))
 
     user = relationship("User", lazy='joined')
