@@ -15,12 +15,34 @@ from .forms import PostingCreateForm, TeamPostingCreateForm
 
 
 @cache.memoize(300)
-def get_all_postings(search_string):
+def query_postings(search_string):
     s = current_app.session_factory()
     query = s.query(Posting).filter_by(display=True)
     if search_string:
         query = search(query, search_string, sort=True)
     query = query.order_by(Posting.created_at.desc())
+    objects = query.all()
+    return objects
+
+
+@cache.memoize(300)
+def query_need_team_postings(search_string):
+    s = current_app.session_factory()
+    query = s.query(NeedTeamPosting).filter_by(display=True)
+    if search_string:
+        query = search(query, search_string, sort=True)
+    query = query.order_by(NeedTeamPosting.created_at.desc())
+    objects = query.all()
+    return objects
+
+
+@cache.memoize(300)
+def query_need_work_postings(search_string):
+    s = current_app.session_factory()
+    query = s.query(NeedWorkPosting).filter_by(display=True)
+    if search_string:
+        query = search(query, search_string, sort=True)
+    query = query.order_by(NeedWorkPosting.created_at.desc())
     objects = query.all()
     return objects
 
@@ -31,17 +53,21 @@ class BaseView(View):
         return render_template(self.template_name, **kwargs)
 
 
-class PostingListView(BaseView):
-    template_name = 'list.html'
-    decorators = [query_string(search_string=opt(str, '')), query_string(page=opt(int, 1))]
+class BasePostingListView(BaseView):
+    template_name = None
+    decorators = [query_string(search_string=opt(str, '')),
+                  query_string(page=opt(int, 1))]
+
+    def query_objects(self, search_string):
+        return None
 
     def get_objects(self, search_string=None, page=None):
         per_page = config.Configuration.POSTINGS_PER_PAGE
-        objects = get_all_postings(search_string)
+        objects = self.query_objects(search_string)
         total = len(objects)
 
-        objects = objects[(page-1)*per_page:page*per_page]
-        is_last_page = ((page-1)*per_page + per_page) >= total
+        objects = objects[(page - 1) * per_page:page * per_page]
+        is_last_page = ((page - 1) * per_page + per_page) >= total
         return objects, is_last_page
 
     def dispatch_request(self, search_string, page):
@@ -50,6 +76,27 @@ class PostingListView(BaseView):
                                     is_last_page=is_last_page,
                                     search_string=search_string,
                                     page=page)
+
+
+class PostingListView(BasePostingListView):
+    template_name = 'list.html'
+
+    def query_objects(self, search_string):
+        return query_postings(search_string)
+
+
+class NeedTeamListView(BasePostingListView):
+    template_name = 'list.html'
+
+    def query_objects(self, search_string):
+        return query_need_team_postings(search_string)
+
+
+class NeedWorkListView(BasePostingListView):
+    template_name = 'list.html'
+
+    def query_objects(self, search_string):
+        return query_need_work_postings(search_string)
 
 
 class PostingCreateView(BaseView):
@@ -69,7 +116,6 @@ class PostingCreateView(BaseView):
                 oneliner=form.oneliner.data.strip(),
                 description=form.description.data.strip(),
                 cv_url=form.cv_url.data.strip(),
-
             )
             posting.user = current_user
 
@@ -78,7 +124,7 @@ class PostingCreateView(BaseView):
                 s.add(previous_post)
             s.add(posting)
             s.commit()
-            cache.delete_memoized(get_all_postings)
+            cache.delete_memoized(query_postings)
             flash('Добавлено')
             return redirect(url_for('postings.posting_list'))
 
@@ -100,7 +146,7 @@ class PostingArchiveView(BaseView):
             posting.display = False
             s.add(posting)
             s.commit()
-            cache.delete_memoized(get_all_postings)
+            cache.delete_memoized(query_postings)
             flash('Архивировано')
         else:
             flash('А ты не можешь это архивировать')
@@ -114,7 +160,7 @@ class PostingThanksView(BaseView):
         return render_template(self.template_name)
 
 
-class NeedTeamPostingCreateView(BaseView):
+class NeedTeamCreateView(BaseView):
     template_name = 'need_team_form.html'
     decorators = [login_required]
 
@@ -138,7 +184,7 @@ class NeedTeamPostingCreateView(BaseView):
         return self.render_template(form=form)
 
 
-class NeedWorkPostingCreateView(BaseView):
+class NeedWorkCreateView(BaseView):
     template_name = 'need_work_form.html'
     decorators = [login_required]
 

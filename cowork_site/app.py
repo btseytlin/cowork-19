@@ -100,6 +100,11 @@ def create_app(config=config.Configuration, session_factory=None):
         )
 
     @cache.cached(999)
+    @app.route("/")
+    def index():
+        return redirect(url_for("postings.posting_list"))
+
+    @cache.cached(999)
     @app.route("/about")
     def about():
         return render_template('about.html')

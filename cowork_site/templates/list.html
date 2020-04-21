@@ -1,24 +1,15 @@
 {% extends 'base.html' %}
 
 {% block content %}
-
-    <div class="container welcome hidden" id="welcome">
-        <p>👋 Привет!
-            Это сайт для тех, кто ищет работу в связи с эпидемией COVID-19.<br/>
-            Здесь тебя ждут:
-            <ul>
-                <li>Резюме других кандидатов на этой странице,</li>
-                <li>Возможность <a href="/create">разместить своё резюме</a>,</li>
-                <li>Новая работа (надеюсь).</li>
-            </ul>
-        </p>
-        <a class="welcome-close" onclick="closeWelcome()">Понятно, больше не показывать.</a>
-        <br/>
-    </div>
-
     <div class="container">
+        <div class="list-menu">
+            <a href="{{ url_for('postings.posting_list') }}" class="{{ 'active-list' if request.endpoint == 'postings.posting_list' else ''}}">Резюме</a>
+            <a href="{{ url_for('postings.list_need_work') }}" class="{{ 'active-list' if request.endpoint == 'postings.list_need_work' else ''}}">Команды</a>
+            <a href="{{ url_for('postings.list_need_team') }}" class="{{ 'active-list' if request.endpoint == 'postings.list_need_team' else ''}}">Проекты</a>
+        </div>
+
         <div class="search">
-            <form class="search-form" method="GET" action="{{ url_for('postings.posting_list') }}">
+            <form class="search-form" method="GET" action="?">
                 <input class="search-bar" type="text" name="search_string"
                            id="search_string" placeholder="Кого будем искать?"
                            value ="{{ search_string }}"/>
@@ -26,15 +17,21 @@
             </form>
         </div>
 
+            {% if request.endpoint == 'postings.posting_list' %}
+                <h1>Соискатели ищут работу</h1>
+            {% elif request.endpoint == 'postings.list_need_work'   %}
+                <h1>Команды ищут проекты</h1>
+            {% elif request.endpoint == 'postings.list_need_team'   %}
+                <h1>Заказчики ищут команды</h1>
+            {% endif %}
+
             {%  if objects %}
                 {% cache 60, objects[0].id, objects[-1].id %}
 
-                    <div class="caniddate-list">
-
-                                  {% for object in objects %}
-                                      {% include 'posting_card.html' %}
-                                  {% endfor %}
-
+                    <div class="card-list">
+                          {% for object in objects %}
+                              {% include 'posting_card.html' %}
+                          {% endfor %}
                     </div>
 
                     <div class="pagination">
@@ -56,7 +53,7 @@
                     </div>
 
                     {% endcache %}
-                {% endif %}
+            {% endif %}
 
 
     </div>

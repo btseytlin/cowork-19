@@ -23,17 +23,19 @@ class TestPostingList:
         posting_1 = Posting(user=user,
                             name='name',
                             description='description',
-                            cv_url='cv_url',
-        )
+                            oneliner='oneliner',
+                            cv_url='cv_url')
 
         posting_2 = Posting(user=user,
                             name='name2',
                             description='description',
+                            oneliner='oneliner',
                             cv_url='cv_url')
 
         posting_3 = Posting(user=user,
                            name='name2',
                            description='description',
+                            oneliner='oneliner',
                            cv_url='cv_url',
                            display=False)
 
@@ -59,17 +61,20 @@ class TestPostingList:
         posting_1 = Posting(user=user,
                             name='valid post',
                             description='',
+                            oneliner='oneliner',
                             cv_url='cv_url',
                             )
 
         posting_2 = Posting(user=user,
                             name='wtf',
                             description='wtf',
+                            oneliner='oneliner',
                             cv_url='cv_url')
 
         posting_3 = Posting(user=user,
                             name='utf8 пост пост',
                             description='',
+                            oneliner='oneliner',
                             cv_url='cv_url')
 
         session.add(posting_1)
