@@ -21,6 +21,8 @@ img {
 
 .img-inline {
     display: inline-block;
+    max-height: 20px;
+    vertical-align: middle;
 }
 
 h1, h2 {
@@ -155,12 +157,15 @@ button, input[type="submit"] {
 .search {
     margin-bottom: 20px;
     margin-top: 20px;
+
+    display: flex;
+    justify-content: space-between;
 }
 
 .search-form {
     width: 100%;
     display: flex;
-    justify-content: left;
+    justify-content: flex-start;
     align-items: center;
 }
 
@@ -168,9 +173,10 @@ button, input[type="submit"] {
     background-color: #3E2FED;
     color:white;
     display: block;
-    width:45%;
     margin-left: 0;
     margin-right: 10px;
+
+    max-width: 220px;
 }
 
 .search-bar::placeholder {
@@ -186,6 +192,12 @@ button, input[type="submit"] {
 }
 
 /* list of cards */
+
+
+.search > .button-add-yours {
+    width: 350px;
+    margin-left: 5px;
+}
 
 .list-menu {
     display: flex;
@@ -258,7 +270,7 @@ button, input[type="submit"] {
 
 .posting-card header .card-title {
     display: flex;
-    justify-content: left;
+    justify-content: flex-start;
 }
 
 .posting-card header .card-title h3 {
@@ -578,10 +590,7 @@ button, input[type="submit"] {
         line-height: 8px;
     }
 
-    h1 {
 
-        font-size: 18px;
-    }
 
     footer a {
         font-size: 16px;

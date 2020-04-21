@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 
 {% block content %}
-    <div class="container">
+    <div class="container list">
         <div class="list-menu">
             <a href="{{ url_for('postings.posting_list') }}" class="{{ 'active-list' if request.endpoint == 'postings.posting_list' else ''}}">Резюме</a>
             <a href="{{ url_for('postings.list_need_work') }}" class="{{ 'active-list' if request.endpoint == 'postings.list_need_work' else ''}}">Команды</a>
@@ -15,6 +15,16 @@
                            value ="{{ search_string }}"/>
                 <button class="search-button" type="submit">Искать</button>
             </form>
+
+            <button class="button-add-yours">
+                {% if request.endpoint == 'postings.posting_list' %}
+                    <a href="{{ url_for('postings.posting_create') }}">Разместить резюме</a>
+                {% elif request.endpoint == 'postings.list_need_work'  %}
+                    <a href="{{ url_for('postings.team_needs_work') }}">Разместить объявление о своей команде</a>
+                {% elif request.endpoint == 'postings.list_need_team' %}
+                    <a href="{{ url_for('postings.need_team') }}">Разместить объявление о своём проекте</a>
+                {% endif %}
+            </button>
         </div>
 
             {% if request.endpoint == 'postings.posting_list' %}
@@ -30,7 +40,11 @@
 
                     <div class="card-list">
                           {% for object in objects %}
-                              {% include 'posting_card.html' %}
+                              {% if request.endpoint == 'postings.posting_list' %}
+                                {% include 'posting_card.html' %}
+                              {% else %}
+                                {% include 'posting_card_b2b.html' %}
+                              {% endif %}
                           {% endfor %}
                     </div>
 
