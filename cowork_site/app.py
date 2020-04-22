@@ -109,10 +109,4 @@ def create_app(config=config.Configuration, session_factory=None):
     def about():
         return render_template('about.html')
 
-    @cache.cached(999)
-    @app.route("/about_team_channel")
-    def about_team_channel():
-        return render_template('about_team_channel.html')
-
-
     return app
