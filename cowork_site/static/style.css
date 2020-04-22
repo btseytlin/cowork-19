@@ -591,9 +591,12 @@ button, input[type="submit"] {
     }
 
 
-
     footer a {
         font-size: 16px;
+    }
+
+    .content {
+        margin-top: 7px;
     }
 
     .container {
@@ -605,11 +608,33 @@ button, input[type="submit"] {
         margin-bottom: 15px;
     }
 
+    .list-menu > a {
+        font-size: 16px;
+        height: 35px;
+        line-height: 35px;
+    }
+
+    .list-menu > a.active-list {
+        font-size: 20px;
+    }
+
     .search {
         margin-bottom: 15px;
+        flex-direction: column;
+        justify-content: space-between;
     }
+    .search > .button-add-yours  {
+        width:100%;
+        margin: 0;
+        margin-top: 10px;
+    }
+
+    .search-form {
+        justify-content: space-between;
+    }
+
     .search-bar {
-        width:65%;
+        width:100%;
     }
 
     .posting-card header {
@@ -787,12 +812,6 @@ https://alligator.io/css/collapsible/
         justify-content: flex-start;
     }
 
-    .nav > .nav-auth {
-        padding-top: 13px;
-        margin-left: 10px;
-    }
-
-
     .nav > .nav-links {
         width: auto;
     }
@@ -805,9 +824,20 @@ https://alligator.io/css/collapsible/
     .nav > .nav-header, .nav > .nav-auth {
         width: auto;
     }
+
+    .nav > .nav-auth {
+        padding-top: 0px;
+        margin-left: 5px;
+        width: 100px;
+    }
+
 }
 
 @media (max-width:825px) {
+
+    h1 {
+        font-size:24px;
+    }
     .nav > .nav-header > .nav-title-sm {
         display: inline-block;
     }
