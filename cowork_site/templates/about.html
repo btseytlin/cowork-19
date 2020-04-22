@@ -1,38 +1,53 @@
 {% extends 'base.html' %}
 
 {% block content %}
-    <div class="container">
-        <div class="about">
-            <h2>Хорошая работа найдет тебя
-                <a href="{{ url_for('postings.posting_create') }}">Попробуй</a>&#160;ей&#160;помочь.
-            </h2>
-            <div class="about-description">
-                <h3>Я сделал этот сайт, когда три моих друга потеряли работу из-за COVID-19.</h3>
+<div class="container">
+    <div class="about">
+        <h2>Платформа&#160;шеринга&#160;сотрудников</h2>
+        <p>
+            COWORK-19 — платформа, где вы можете <a href="{{ url_for('postings.list_need_team') }}">нанять&#160;команду</a>
+            или <a href="{{ url_for('postings.list_need_work') }}">сдать&#160;команду&#160;в&#160;аренду</a>.
+            Ваше объявление будет размещено на сайте и в Telegram-канале. Это бесплатно.
+        </p>
+        <p>
+        <b>Шеринг сотрудников</b> —
+            переброс рабочей силы из индустрий со сниженным спросом
+            в индустрии, где спрос растет. Мы стараемся обеспечить стабильный, гибкий и трудоемкий процесс шеринга.
+        Например, чтобы команду колл-центра из туризма можно было легко "сдать в аренду" в компанию доставки продуктов питания.
+        </p>
+        <p>
+        Платформа открыта для любых компаний, команд и сокращенных специалистов, но в приоритете будут самые "пострадавшие" сферы или те, которые будут снабжать нас всем необходимым:
+        <ul>
+            <li>Доставка</li>
+            <li>Гостинично-ресторанный бизнес / HoReCa</li>
+            <li>Медицина</li>
+            <li>Офлайн ритейл</li>
+        </ul>
+        </p>
+        <p>
+        Индивидуальные специалисты могут <a href="{{ url_for('postings.posting_list') }}">разместить&#160;резюме</a> для поиска работы.
+        Как владелец бизнеса или руководитель команды, вы можете воспользоваться им при формирования рабочих групп.
 
-                <p>
-                    Каждый работодатель знает: все самые лучшие специалисты уже имеют работу.
-                    Но сейчас ситуация изменилась.
-                </p>
-                <p>
-                    Из-за эпидемии многие компании несут убытки и сокращают рабочие места.
-                    Хорошие сотрудники оказываются в поиске работы.
-                    Другие компании растут, знают об этом и набирают людей.
-                    Размещай своё резюме здесь и им будет проще тебя найти.
-                </p>
-
-                <a href="{{ url_for('postings.posting_create') }}">Попробуй&#160;прямо&#160;сейчас</a>, займет не больше 10 минут.
-            </div>
-            <div class="about-links">
-                <ul>
-                    <li>Наш <a href="https://teleg.run/cowork19club" target="_blank"><img class="img-inline" src="https://img.icons8.com/windows/32/000000/telegram-app.png"/> Телеграм канал</a></li>
-                    <li>В<a href="https://teleg.run/joinchat/FzaNb0ZGqSl87UaA2UGcBw" target="_blank"><img class="img-inline" src="https://img.icons8.com/windows/32/000000/telegram-app.png"/> чате сообщества</a>
-                        можно сообщить о&#160;проблеме, предложить идею и&#160;обсудить насущное.</li>
-                    <li><a href="https://teleg.run/btseytlin" target="_blank"><img class="img-inline" src="https://img.icons8.com/windows/32/000000/telegram-app.png"/> Связаться с автором</a></li>
-                </ul>
-            </div>
-        </div>
-        <div class="about-pic">
-            <img class="about-img" src="{{ url_for('static', filename='astronaut.png') }}" alt="astronaut"/>
+        Например, можно обратиться к свободным специалистам, если к колл-центру нужен руководитель,
+        но принимающая компания не готова их предоставить.
+        </p>
+        Полезные ссылки:
+        <div class="about-links">
+            <ul>
+                <li>Наш <a href="https://teleg.run/cowork19club" target="_blank"><img class="img-inline" src="https://img.icons8.com/windows/32/000000/telegram-app.png"/> Telegram-канал</a></li>
+                <li>Разделы:
+                    <ul>
+                    <li><a href="{{ url_for('postings.list_need_work') }}">Команды ишут проекты</a></li>
+                        <li><a href="{{ url_for('postings.list_need_team') }}">Заказчики ищут команды</a></li>
+                        <li><a href="{{ url_for('postings.posting_list') }}">Специалисты ищут работу</a></li>
+                    </ul>
+                </li>
+                <li>Обратная связь: <a href="https://teleg.run/btseytlin" target="_blank"><img class="img-inline" src="https://img.icons8.com/windows/32/000000/telegram-app.png"/> Связаться с автором</a></li>
+            </ul>
         </div>
     </div>
+    <div class="about-pic">
+        <img class="about-img" src="{{ url_for('static', filename='astronaut.png') }}" alt="astronaut"/>
+    </div>
+</div>
 {% endblock %}
