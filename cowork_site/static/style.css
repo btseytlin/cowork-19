@@ -464,7 +464,7 @@ button, input[type="submit"] {
 }
 
 .about {
-    max-width: 70%;
+    max-width: 100%;
     text-align: justify;
 }
 .about-description {
