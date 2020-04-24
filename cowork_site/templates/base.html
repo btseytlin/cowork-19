@@ -34,7 +34,9 @@
 </head>
 <body>
     {% include 'navbar.html' %}
+
     <div>
+        {% include 'partners.html' %}
         {%  if  get_flashed_messages()  %}
         <div class="container">
             {% for message in get_flashed_messages() %}

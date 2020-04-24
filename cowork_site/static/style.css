@@ -314,7 +314,32 @@ button, input[type="submit"] {
     color: white;
 }
 
+/* partners */
 
+.partners {
+    height: 80px;
+}
+
+.partners > h5 {
+    margin: 0;
+    font-weight: normal;
+    color: #999;
+}
+
+.partners > .partners-list {
+    display: flex;
+    justify-content: space-evenly;
+    align-content: center;
+}
+
+.partners > .partners-list a {
+    display: inline-block;
+    height: 65px;
+}
+
+.partners > .partners-list img {
+    max-width: 87px;
+}
 /* Google button */
 
 .google-button {
