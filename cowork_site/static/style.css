@@ -906,6 +906,7 @@ https://alligator.io/css/collapsible/
   .nav > .nav-links > a {
     display: block;
     width: 100%;
+      padding-left: 15px;
   }
   .nav > #nav-check:not(:checked) ~ .nav-links {
     height: 0px;
