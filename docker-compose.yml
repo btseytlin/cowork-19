@@ -65,7 +65,7 @@ services:
     depends_on:
       - cowork_site
     env_file:
-      - local.env
+      - prod.env
     networks:
       - cowork-network
 
